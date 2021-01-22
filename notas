@@ -1,0 +1,21 @@
+# todo verificar que los methodos y los attrs hallan sido inferidos sus
+#  tipos, si no lanzar exception
+# todo poner esa inferencia en el AST para darselo ya modificado al type
+#  checker, notar que se necesitara modificar todoel ast, incluyendo las
+#  variables de las expresiones dentro de las inicializaciones de attr y
+#  cuerpos de metodos, el tipo del retorno ya esta, solo se necesita el de los attr
+# y el de las expre de cuerpos de inicializaciones de attr o cuerpos de metodos
+
+  # todo recordar por lo ya visto de que una vez establecido el tipo de retorno
+#  a partir de la expr este no cambia, en el caso de los params, attrs y
+#  variables en general, las expre resultantes de la asignacion no definen un
+#  tipo, el tipo de todos los attr y params que sea auto, siempre es object
+#  a menos que se haga uso de un metodo o attr de ese tipo en cuyo caso se
+#  cambiaria a un tipo mas abajo en la jerarquia, y una vez que se establezca
+#  tampoco cambia, pq si se sube, no se puede hacer usi de los attr y methodos
+#  q se llaman, si se baja, va en contradiccion de que sea el mas general
+
+en el caso de los metodos su expresion de inicializacion (cuerpo) si define el tipo
+de retorno, y una vez establecido este no cambiara, en el caso de attr y params
+el tipo de tal expr no lo hace, este se define por los llamados a attr y metodos,
+y este puede cambiar, bajando en el grafo de herencia

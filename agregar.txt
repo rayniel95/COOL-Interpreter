@@ -1,0 +1,2 @@
+agregar q se pueda inferir los attr en funcion de su uso sin antes haber sido inicilaizados tomando entonces el valor por defecto
+agregar q cuando se vaya a buscar la clase del metodo, tener en cuenta no solo el nombre del metodo sino la cantidad de parametros y el tipo

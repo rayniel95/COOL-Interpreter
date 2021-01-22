@@ -1,0 +1,3756 @@
+Created by PLY version 3.8 (http://www.dabeaz.com/ply)
+
+Unused terminals:
+
+    SELF_TYPE
+    COMMENTS
+    SPECIAL_CHAR
+    AUTO_TYPE
+
+Grammar
+
+Rule 0     S' -> program
+Rule 1     program -> class_list
+Rule 2     class_list -> class_list class POINT_AND_COMMA
+Rule 3     class_list -> class POINT_AND_COMMA
+Rule 4     class -> CLASS TYPE_ID O_KEY features_list_opt C_KEY
+Rule 5     class -> CLASS TYPE_ID INHERITS TYPE_ID O_KEY features_list_opt C_KEY
+Rule 6     features_list_opt -> features_list
+Rule 7     features_list_opt -> empty
+Rule 8     features_list -> features_list feature POINT_AND_COMMA
+Rule 9     features_list -> feature POINT_AND_COMMA
+Rule 10    feature -> ID O_PAR formal_params_list C_PAR TWO_POINTS TYPE_ID O_KEY expression C_KEY
+Rule 11    feature -> ID O_PAR C_PAR TWO_POINTS TYPE_ID O_KEY expression C_KEY
+Rule 12    feature -> ID TWO_POINTS TYPE_ID ASSIGNAMENT expression
+Rule 13    feature -> ID TWO_POINTS TYPE_ID
+Rule 14    formal_params_list -> formal_params_list COMMA formal_param
+Rule 15    formal_params_list -> formal_param
+Rule 16    formal_param -> ID TWO_POINTS TYPE_ID
+Rule 17    expression -> ID
+Rule 18    expression -> INT
+Rule 19    expression -> BOOL
+Rule 20    expression -> STRING
+Rule 21    expression -> SELF
+Rule 22    expression -> O_KEY block_list C_KEY
+Rule 23    block_list -> block_list expression POINT_AND_COMMA
+Rule 24    block_list -> expression POINT_AND_COMMA
+Rule 25    expression -> ID ASSIGNAMENT expression
+Rule 26    expression -> expression POINT ID O_PAR arguments_list_opt C_PAR
+Rule 27    arguments_list_opt -> arguments_list
+Rule 28    arguments_list_opt -> empty
+Rule 29    arguments_list -> arguments_list COMMA expression
+Rule 30    arguments_list -> expression
+Rule 31    expression -> expression AT TYPE_ID POINT ID O_PAR arguments_list_opt C_PAR
+Rule 32    expression -> ID O_PAR arguments_list_opt C_PAR
+Rule 33    expression -> expression PLUS expression
+Rule 34    expression -> expression MINUS expression
+Rule 35    expression -> expression STAR expression
+Rule 36    expression -> expression DIV expression
+Rule 37    expression -> expression LESS_THAN expression
+Rule 38    expression -> expression LESS_EQUAL_THAN expression
+Rule 39    expression -> expression EQUAL expression
+Rule 40    expression -> O_PAR expression C_PAR
+Rule 41    expression -> IF expression THEN expression ELSE expression FI
+Rule 42    expression -> WHILE expression LOOP expression POOL
+Rule 43    expression -> CASE expression OF actions_list ESAC
+Rule 44    actions_list -> actions_list action
+Rule 45    actions_list -> action
+Rule 46    action -> ID TWO_POINTS TYPE_ID IMPLICATION expression POINT_AND_COMMA
+Rule 47    expression -> NEW TYPE_ID
+Rule 48    expression -> ISVOID expression
+Rule 49    expression -> DESTRUCTOR expression
+Rule 50    expression -> NOT expression
+Rule 51    expression -> let_expression
+Rule 52    let_expression -> LET generate_instances IN expression
+Rule 53    generate_instances -> ID TWO_POINTS TYPE_ID
+Rule 54    generate_instances -> ID TWO_POINTS TYPE_ID ASSIGNAMENT expression
+Rule 55    generate_instances -> generate_instances COMMA ID TWO_POINTS TYPE_ID
+Rule 56    generate_instances -> generate_instances COMMA ID TWO_POINTS TYPE_ID ASSIGNAMENT expression
+Rule 57    empty -> <empty>
+
+Terminals, with rules where they appear
+
+ASSIGNAMENT          : 12 25 54 56
+AT                   : 31
+AUTO_TYPE            : 
+BOOL                 : 19
+CASE                 : 43
+CLASS                : 4 5
+COMMA                : 14 29 55 56
+COMMENTS             : 
+C_KEY                : 4 5 10 11 22
+C_PAR                : 10 11 26 31 32 40
+DESTRUCTOR           : 49
+DIV                  : 36
+ELSE                 : 41
+EQUAL                : 39
+ESAC                 : 43
+FI                   : 41
+ID                   : 10 11 12 13 16 17 25 26 31 32 46 53 54 55 56
+IF                   : 41
+IMPLICATION          : 46
+IN                   : 52
+INHERITS             : 5
+INT                  : 18
+ISVOID               : 48
+LESS_EQUAL_THAN      : 38
+LESS_THAN            : 37
+LET                  : 52
+LOOP                 : 42
+MINUS                : 34
+NEW                  : 47
+NOT                  : 50
+OF                   : 43
+O_KEY                : 4 5 10 11 22
+O_PAR                : 10 11 26 31 32 40
+PLUS                 : 33
+POINT                : 26 31
+POINT_AND_COMMA      : 2 3 8 9 23 24 46
+POOL                 : 42
+SELF                 : 21
+SELF_TYPE            : 
+SPECIAL_CHAR         : 
+STAR                 : 35
+STRING               : 20
+THEN                 : 41
+TWO_POINTS           : 10 11 12 13 16 46 53 54 55 56
+TYPE_ID              : 4 5 5 10 11 12 13 16 31 46 47 53 54 55 56
+WHILE                : 42
+error                : 
+
+Nonterminals, with rules where they appear
+
+action               : 44 45
+actions_list         : 43 44
+arguments_list       : 27 29
+arguments_list_opt   : 26 31 32
+block_list           : 22 23
+class                : 2 3
+class_list           : 1 2
+empty                : 7 28
+expression           : 10 11 12 23 24 25 26 29 30 31 33 33 34 34 35 35 36 36 37 37 38 38 39 39 40 41 41 41 42 42 43 46 48 49 50 52 54 56
+feature              : 8 9
+features_list        : 6 8
+features_list_opt    : 4 5
+formal_param         : 14 15
+formal_params_list   : 10 14
+generate_instances   : 52 55 56
+let_expression       : 51
+program              : 0
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . program
+    (1) program -> . class_list
+    (2) class_list -> . class_list class POINT_AND_COMMA
+    (3) class_list -> . class POINT_AND_COMMA
+    (4) class -> . CLASS TYPE_ID O_KEY features_list_opt C_KEY
+    (5) class -> . CLASS TYPE_ID INHERITS TYPE_ID O_KEY features_list_opt C_KEY
+
+    CLASS           shift and go to state 4
+
+    program                        shift and go to state 1
+    class_list                     shift and go to state 2
+    class                          shift and go to state 3
+
+state 1
+
+    (0) S' -> program .
+
+
+
+state 2
+
+    (1) program -> class_list .
+    (2) class_list -> class_list . class POINT_AND_COMMA
+    (4) class -> . CLASS TYPE_ID O_KEY features_list_opt C_KEY
+    (5) class -> . CLASS TYPE_ID INHERITS TYPE_ID O_KEY features_list_opt C_KEY
+
+    $end            reduce using rule 1 (program -> class_list .)
+    CLASS           shift and go to state 4
+
+    class                          shift and go to state 5
+
+state 3
+
+    (3) class_list -> class . POINT_AND_COMMA
+
+    POINT_AND_COMMA shift and go to state 6
+
+
+state 4
+
+    (4) class -> CLASS . TYPE_ID O_KEY features_list_opt C_KEY
+    (5) class -> CLASS . TYPE_ID INHERITS TYPE_ID O_KEY features_list_opt C_KEY
+
+    TYPE_ID         shift and go to state 7
+
+
+state 5
+
+    (2) class_list -> class_list class . POINT_AND_COMMA
+
+    POINT_AND_COMMA shift and go to state 8
+
+
+state 6
+
+    (3) class_list -> class POINT_AND_COMMA .
+
+    CLASS           reduce using rule 3 (class_list -> class POINT_AND_COMMA .)
+    $end            reduce using rule 3 (class_list -> class POINT_AND_COMMA .)
+
+
+state 7
+
+    (4) class -> CLASS TYPE_ID . O_KEY features_list_opt C_KEY
+    (5) class -> CLASS TYPE_ID . INHERITS TYPE_ID O_KEY features_list_opt C_KEY
+
+    O_KEY           shift and go to state 9
+    INHERITS        shift and go to state 10
+
+
+state 8
+
+    (2) class_list -> class_list class POINT_AND_COMMA .
+
+    CLASS           reduce using rule 2 (class_list -> class_list class POINT_AND_COMMA .)
+    $end            reduce using rule 2 (class_list -> class_list class POINT_AND_COMMA .)
+
+
+state 9
+
+    (4) class -> CLASS TYPE_ID O_KEY . features_list_opt C_KEY
+    (6) features_list_opt -> . features_list
+    (7) features_list_opt -> . empty
+    (8) features_list -> . features_list feature POINT_AND_COMMA
+    (9) features_list -> . feature POINT_AND_COMMA
+    (57) empty -> .
+    (10) feature -> . ID O_PAR formal_params_list C_PAR TWO_POINTS TYPE_ID O_KEY expression C_KEY
+    (11) feature -> . ID O_PAR C_PAR TWO_POINTS TYPE_ID O_KEY expression C_KEY
+    (12) feature -> . ID TWO_POINTS TYPE_ID ASSIGNAMENT expression
+    (13) feature -> . ID TWO_POINTS TYPE_ID
+
+    C_KEY           reduce using rule 57 (empty -> .)
+    ID              shift and go to state 15
+
+    features_list_opt              shift and go to state 11
+    features_list                  shift and go to state 12
+    empty                          shift and go to state 13
+    feature                        shift and go to state 14
+
+state 10
+
+    (5) class -> CLASS TYPE_ID INHERITS . TYPE_ID O_KEY features_list_opt C_KEY
+
+    TYPE_ID         shift and go to state 16
+
+
+state 11
+
+    (4) class -> CLASS TYPE_ID O_KEY features_list_opt . C_KEY
+
+    C_KEY           shift and go to state 17
+
+
+state 12
+
+    (6) features_list_opt -> features_list .
+    (8) features_list -> features_list . feature POINT_AND_COMMA
+    (10) feature -> . ID O_PAR formal_params_list C_PAR TWO_POINTS TYPE_ID O_KEY expression C_KEY
+    (11) feature -> . ID O_PAR C_PAR TWO_POINTS TYPE_ID O_KEY expression C_KEY
+    (12) feature -> . ID TWO_POINTS TYPE_ID ASSIGNAMENT expression
+    (13) feature -> . ID TWO_POINTS TYPE_ID
+
+    C_KEY           reduce using rule 6 (features_list_opt -> features_list .)
+    ID              shift and go to state 15
+
+    feature                        shift and go to state 18
+
+state 13
+
+    (7) features_list_opt -> empty .
+
+    C_KEY           reduce using rule 7 (features_list_opt -> empty .)
+
+
+state 14
+
+    (9) features_list -> feature . POINT_AND_COMMA
+
+    POINT_AND_COMMA shift and go to state 19
+
+
+state 15
+
+    (10) feature -> ID . O_PAR formal_params_list C_PAR TWO_POINTS TYPE_ID O_KEY expression C_KEY
+    (11) feature -> ID . O_PAR C_PAR TWO_POINTS TYPE_ID O_KEY expression C_KEY
+    (12) feature -> ID . TWO_POINTS TYPE_ID ASSIGNAMENT expression
+    (13) feature -> ID . TWO_POINTS TYPE_ID
+
+    O_PAR           shift and go to state 20
+    TWO_POINTS      shift and go to state 21
+
+
+state 16
+
+    (5) class -> CLASS TYPE_ID INHERITS TYPE_ID . O_KEY features_list_opt C_KEY
+
+    O_KEY           shift and go to state 22
+
+
+state 17
+
+    (4) class -> CLASS TYPE_ID O_KEY features_list_opt C_KEY .
+
+    POINT_AND_COMMA reduce using rule 4 (class -> CLASS TYPE_ID O_KEY features_list_opt C_KEY .)
+
+
+state 18
+
+    (8) features_list -> features_list feature . POINT_AND_COMMA
+
+    POINT_AND_COMMA shift and go to state 23
+
+
+state 19
+
+    (9) features_list -> feature POINT_AND_COMMA .
+
+    ID              reduce using rule 9 (features_list -> feature POINT_AND_COMMA .)
+    C_KEY           reduce using rule 9 (features_list -> feature POINT_AND_COMMA .)
+
+
+state 20
+
+    (10) feature -> ID O_PAR . formal_params_list C_PAR TWO_POINTS TYPE_ID O_KEY expression C_KEY
+    (11) feature -> ID O_PAR . C_PAR TWO_POINTS TYPE_ID O_KEY expression C_KEY
+    (14) formal_params_list -> . formal_params_list COMMA formal_param
+    (15) formal_params_list -> . formal_param
+    (16) formal_param -> . ID TWO_POINTS TYPE_ID
+
+    C_PAR           shift and go to state 26
+    ID              shift and go to state 24
+
+    formal_params_list             shift and go to state 25
+    formal_param                   shift and go to state 27
+
+state 21
+
+    (12) feature -> ID TWO_POINTS . TYPE_ID ASSIGNAMENT expression
+    (13) feature -> ID TWO_POINTS . TYPE_ID
+
+    TYPE_ID         shift and go to state 28
+
+
+state 22
+
+    (5) class -> CLASS TYPE_ID INHERITS TYPE_ID O_KEY . features_list_opt C_KEY
+    (6) features_list_opt -> . features_list
+    (7) features_list_opt -> . empty
+    (8) features_list -> . features_list feature POINT_AND_COMMA
+    (9) features_list -> . feature POINT_AND_COMMA
+    (57) empty -> .
+    (10) feature -> . ID O_PAR formal_params_list C_PAR TWO_POINTS TYPE_ID O_KEY expression C_KEY
+    (11) feature -> . ID O_PAR C_PAR TWO_POINTS TYPE_ID O_KEY expression C_KEY
+    (12) feature -> . ID TWO_POINTS TYPE_ID ASSIGNAMENT expression
+    (13) feature -> . ID TWO_POINTS TYPE_ID
+
+    C_KEY           reduce using rule 57 (empty -> .)
+    ID              shift and go to state 15
+
+    features_list_opt              shift and go to state 29
+    features_list                  shift and go to state 12
+    empty                          shift and go to state 13
+    feature                        shift and go to state 14
+
+state 23
+
+    (8) features_list -> features_list feature POINT_AND_COMMA .
+
+    ID              reduce using rule 8 (features_list -> features_list feature POINT_AND_COMMA .)
+    C_KEY           reduce using rule 8 (features_list -> features_list feature POINT_AND_COMMA .)
+
+
+state 24
+
+    (16) formal_param -> ID . TWO_POINTS TYPE_ID
+
+    TWO_POINTS      shift and go to state 30
+
+
+state 25
+
+    (10) feature -> ID O_PAR formal_params_list . C_PAR TWO_POINTS TYPE_ID O_KEY expression C_KEY
+    (14) formal_params_list -> formal_params_list . COMMA formal_param
+
+    C_PAR           shift and go to state 31
+    COMMA           shift and go to state 32
+
+
+state 26
+
+    (11) feature -> ID O_PAR C_PAR . TWO_POINTS TYPE_ID O_KEY expression C_KEY
+
+    TWO_POINTS      shift and go to state 33
+
+
+state 27
+
+    (15) formal_params_list -> formal_param .
+
+    C_PAR           reduce using rule 15 (formal_params_list -> formal_param .)
+    COMMA           reduce using rule 15 (formal_params_list -> formal_param .)
+
+
+state 28
+
+    (12) feature -> ID TWO_POINTS TYPE_ID . ASSIGNAMENT expression
+    (13) feature -> ID TWO_POINTS TYPE_ID .
+
+    ASSIGNAMENT     shift and go to state 34
+    POINT_AND_COMMA reduce using rule 13 (feature -> ID TWO_POINTS TYPE_ID .)
+
+
+state 29
+
+    (5) class -> CLASS TYPE_ID INHERITS TYPE_ID O_KEY features_list_opt . C_KEY
+
+    C_KEY           shift and go to state 35
+
+
+state 30
+
+    (16) formal_param -> ID TWO_POINTS . TYPE_ID
+
+    TYPE_ID         shift and go to state 36
+
+
+state 31
+
+    (10) feature -> ID O_PAR formal_params_list C_PAR . TWO_POINTS TYPE_ID O_KEY expression C_KEY
+
+    TWO_POINTS      shift and go to state 37
+
+
+state 32
+
+    (14) formal_params_list -> formal_params_list COMMA . formal_param
+    (16) formal_param -> . ID TWO_POINTS TYPE_ID
+
+    ID              shift and go to state 24
+
+    formal_param                   shift and go to state 38
+
+state 33
+
+    (11) feature -> ID O_PAR C_PAR TWO_POINTS . TYPE_ID O_KEY expression C_KEY
+
+    TYPE_ID         shift and go to state 39
+
+
+state 34
+
+    (12) feature -> ID TWO_POINTS TYPE_ID ASSIGNAMENT . expression
+    (17) expression -> . ID
+    (18) expression -> . INT
+    (19) expression -> . BOOL
+    (20) expression -> . STRING
+    (21) expression -> . SELF
+    (22) expression -> . O_KEY block_list C_KEY
+    (25) expression -> . ID ASSIGNAMENT expression
+    (26) expression -> . expression POINT ID O_PAR arguments_list_opt C_PAR
+    (31) expression -> . expression AT TYPE_ID POINT ID O_PAR arguments_list_opt C_PAR
+    (32) expression -> . ID O_PAR arguments_list_opt C_PAR
+    (33) expression -> . expression PLUS expression
+    (34) expression -> . expression MINUS expression
+    (35) expression -> . expression STAR expression
+    (36) expression -> . expression DIV expression
+    (37) expression -> . expression LESS_THAN expression
+    (38) expression -> . expression LESS_EQUAL_THAN expression
+    (39) expression -> . expression EQUAL expression
+    (40) expression -> . O_PAR expression C_PAR
+    (41) expression -> . IF expression THEN expression ELSE expression FI
+    (42) expression -> . WHILE expression LOOP expression POOL
+    (43) expression -> . CASE expression OF actions_list ESAC
+    (47) expression -> . NEW TYPE_ID
+    (48) expression -> . ISVOID expression
+    (49) expression -> . DESTRUCTOR expression
+    (50) expression -> . NOT expression
+    (51) expression -> . let_expression
+    (52) let_expression -> . LET generate_instances IN expression
+
+    ID              shift and go to state 40
+    INT             shift and go to state 42
+    BOOL            shift and go to state 43
+    STRING          shift and go to state 44
+    SELF            shift and go to state 45
+    O_KEY           shift and go to state 46
+    O_PAR           shift and go to state 47
+    IF              shift and go to state 48
+    WHILE           shift and go to state 49
+    CASE            shift and go to state 50
+    NEW             shift and go to state 51
+    ISVOID          shift and go to state 52
+    DESTRUCTOR      shift and go to state 53
+    NOT             shift and go to state 54
+    LET             shift and go to state 56
+
+    expression                     shift and go to state 41
+    let_expression                 shift and go to state 55
+
+state 35
+
+    (5) class -> CLASS TYPE_ID INHERITS TYPE_ID O_KEY features_list_opt C_KEY .
+
+    POINT_AND_COMMA reduce using rule 5 (class -> CLASS TYPE_ID INHERITS TYPE_ID O_KEY features_list_opt C_KEY .)
+
+
+state 36
+
+    (16) formal_param -> ID TWO_POINTS TYPE_ID .
+
+    C_PAR           reduce using rule 16 (formal_param -> ID TWO_POINTS TYPE_ID .)
+    COMMA           reduce using rule 16 (formal_param -> ID TWO_POINTS TYPE_ID .)
+
+
+state 37
+
+    (10) feature -> ID O_PAR formal_params_list C_PAR TWO_POINTS . TYPE_ID O_KEY expression C_KEY
+
+    TYPE_ID         shift and go to state 57
+
+
+state 38
+
+    (14) formal_params_list -> formal_params_list COMMA formal_param .
+
+    C_PAR           reduce using rule 14 (formal_params_list -> formal_params_list COMMA formal_param .)
+    COMMA           reduce using rule 14 (formal_params_list -> formal_params_list COMMA formal_param .)
+
+
+state 39
+
+    (11) feature -> ID O_PAR C_PAR TWO_POINTS TYPE_ID . O_KEY expression C_KEY
+
+    O_KEY           shift and go to state 58
+
+
+state 40
+
+    (17) expression -> ID .
+    (25) expression -> ID . ASSIGNAMENT expression
+    (32) expression -> ID . O_PAR arguments_list_opt C_PAR
+
+    POINT           reduce using rule 17 (expression -> ID .)
+    AT              reduce using rule 17 (expression -> ID .)
+    PLUS            reduce using rule 17 (expression -> ID .)
+    MINUS           reduce using rule 17 (expression -> ID .)
+    STAR            reduce using rule 17 (expression -> ID .)
+    DIV             reduce using rule 17 (expression -> ID .)
+    LESS_THAN       reduce using rule 17 (expression -> ID .)
+    LESS_EQUAL_THAN reduce using rule 17 (expression -> ID .)
+    EQUAL           reduce using rule 17 (expression -> ID .)
+    POINT_AND_COMMA reduce using rule 17 (expression -> ID .)
+    C_PAR           reduce using rule 17 (expression -> ID .)
+    THEN            reduce using rule 17 (expression -> ID .)
+    LOOP            reduce using rule 17 (expression -> ID .)
+    OF              reduce using rule 17 (expression -> ID .)
+    C_KEY           reduce using rule 17 (expression -> ID .)
+    COMMA           reduce using rule 17 (expression -> ID .)
+    ELSE            reduce using rule 17 (expression -> ID .)
+    POOL            reduce using rule 17 (expression -> ID .)
+    FI              reduce using rule 17 (expression -> ID .)
+    IN              reduce using rule 17 (expression -> ID .)
+    ASSIGNAMENT     shift and go to state 59
+    O_PAR           shift and go to state 60
+
+
+state 41
+
+    (12) feature -> ID TWO_POINTS TYPE_ID ASSIGNAMENT expression .
+    (26) expression -> expression . POINT ID O_PAR arguments_list_opt C_PAR
+    (31) expression -> expression . AT TYPE_ID POINT ID O_PAR arguments_list_opt C_PAR
+    (33) expression -> expression . PLUS expression
+    (34) expression -> expression . MINUS expression
+    (35) expression -> expression . STAR expression
+    (36) expression -> expression . DIV expression
+    (37) expression -> expression . LESS_THAN expression
+    (38) expression -> expression . LESS_EQUAL_THAN expression
+    (39) expression -> expression . EQUAL expression
+
+    POINT_AND_COMMA reduce using rule 12 (feature -> ID TWO_POINTS TYPE_ID ASSIGNAMENT expression .)
+    POINT           shift and go to state 61
+    AT              shift and go to state 62
+    PLUS            shift and go to state 63
+    MINUS           shift and go to state 64
+    STAR            shift and go to state 65
+    DIV             shift and go to state 66
+    LESS_THAN       shift and go to state 67
+    LESS_EQUAL_THAN shift and go to state 68
+    EQUAL           shift and go to state 69
+
+
+state 42
+
+    (18) expression -> INT .
+
+    POINT           reduce using rule 18 (expression -> INT .)
+    AT              reduce using rule 18 (expression -> INT .)
+    PLUS            reduce using rule 18 (expression -> INT .)
+    MINUS           reduce using rule 18 (expression -> INT .)
+    STAR            reduce using rule 18 (expression -> INT .)
+    DIV             reduce using rule 18 (expression -> INT .)
+    LESS_THAN       reduce using rule 18 (expression -> INT .)
+    LESS_EQUAL_THAN reduce using rule 18 (expression -> INT .)
+    EQUAL           reduce using rule 18 (expression -> INT .)
+    POINT_AND_COMMA reduce using rule 18 (expression -> INT .)
+    C_PAR           reduce using rule 18 (expression -> INT .)
+    THEN            reduce using rule 18 (expression -> INT .)
+    LOOP            reduce using rule 18 (expression -> INT .)
+    OF              reduce using rule 18 (expression -> INT .)
+    C_KEY           reduce using rule 18 (expression -> INT .)
+    COMMA           reduce using rule 18 (expression -> INT .)
+    ELSE            reduce using rule 18 (expression -> INT .)
+    POOL            reduce using rule 18 (expression -> INT .)
+    FI              reduce using rule 18 (expression -> INT .)
+    IN              reduce using rule 18 (expression -> INT .)
+
+
+state 43
+
+    (19) expression -> BOOL .
+
+    POINT           reduce using rule 19 (expression -> BOOL .)
+    AT              reduce using rule 19 (expression -> BOOL .)
+    PLUS            reduce using rule 19 (expression -> BOOL .)
+    MINUS           reduce using rule 19 (expression -> BOOL .)
+    STAR            reduce using rule 19 (expression -> BOOL .)
+    DIV             reduce using rule 19 (expression -> BOOL .)
+    LESS_THAN       reduce using rule 19 (expression -> BOOL .)
+    LESS_EQUAL_THAN reduce using rule 19 (expression -> BOOL .)
+    EQUAL           reduce using rule 19 (expression -> BOOL .)
+    POINT_AND_COMMA reduce using rule 19 (expression -> BOOL .)
+    C_PAR           reduce using rule 19 (expression -> BOOL .)
+    THEN            reduce using rule 19 (expression -> BOOL .)
+    LOOP            reduce using rule 19 (expression -> BOOL .)
+    OF              reduce using rule 19 (expression -> BOOL .)
+    C_KEY           reduce using rule 19 (expression -> BOOL .)
+    COMMA           reduce using rule 19 (expression -> BOOL .)
+    ELSE            reduce using rule 19 (expression -> BOOL .)
+    POOL            reduce using rule 19 (expression -> BOOL .)
+    FI              reduce using rule 19 (expression -> BOOL .)
+    IN              reduce using rule 19 (expression -> BOOL .)
+
+
+state 44
+
+    (20) expression -> STRING .
+
+    POINT           reduce using rule 20 (expression -> STRING .)
+    AT              reduce using rule 20 (expression -> STRING .)
+    PLUS            reduce using rule 20 (expression -> STRING .)
+    MINUS           reduce using rule 20 (expression -> STRING .)
+    STAR            reduce using rule 20 (expression -> STRING .)
+    DIV             reduce using rule 20 (expression -> STRING .)
+    LESS_THAN       reduce using rule 20 (expression -> STRING .)
+    LESS_EQUAL_THAN reduce using rule 20 (expression -> STRING .)
+    EQUAL           reduce using rule 20 (expression -> STRING .)
+    POINT_AND_COMMA reduce using rule 20 (expression -> STRING .)
+    C_PAR           reduce using rule 20 (expression -> STRING .)
+    THEN            reduce using rule 20 (expression -> STRING .)
+    LOOP            reduce using rule 20 (expression -> STRING .)
+    OF              reduce using rule 20 (expression -> STRING .)
+    C_KEY           reduce using rule 20 (expression -> STRING .)
+    COMMA           reduce using rule 20 (expression -> STRING .)
+    ELSE            reduce using rule 20 (expression -> STRING .)
+    POOL            reduce using rule 20 (expression -> STRING .)
+    FI              reduce using rule 20 (expression -> STRING .)
+    IN              reduce using rule 20 (expression -> STRING .)
+
+
+state 45
+
+    (21) expression -> SELF .
+
+    POINT           reduce using rule 21 (expression -> SELF .)
+    AT              reduce using rule 21 (expression -> SELF .)
+    PLUS            reduce using rule 21 (expression -> SELF .)
+    MINUS           reduce using rule 21 (expression -> SELF .)
+    STAR            reduce using rule 21 (expression -> SELF .)
+    DIV             reduce using rule 21 (expression -> SELF .)
+    LESS_THAN       reduce using rule 21 (expression -> SELF .)
+    LESS_EQUAL_THAN reduce using rule 21 (expression -> SELF .)
+    EQUAL           reduce using rule 21 (expression -> SELF .)
+    POINT_AND_COMMA reduce using rule 21 (expression -> SELF .)
+    C_PAR           reduce using rule 21 (expression -> SELF .)
+    THEN            reduce using rule 21 (expression -> SELF .)
+    LOOP            reduce using rule 21 (expression -> SELF .)
+    OF              reduce using rule 21 (expression -> SELF .)
+    C_KEY           reduce using rule 21 (expression -> SELF .)
+    COMMA           reduce using rule 21 (expression -> SELF .)
+    ELSE            reduce using rule 21 (expression -> SELF .)
+    POOL            reduce using rule 21 (expression -> SELF .)
+    FI              reduce using rule 21 (expression -> SELF .)
+    IN              reduce using rule 21 (expression -> SELF .)
+
+
+state 46
+
+    (22) expression -> O_KEY . block_list C_KEY
+    (23) block_list -> . block_list expression POINT_AND_COMMA
+    (24) block_list -> . expression POINT_AND_COMMA
+    (17) expression -> . ID
+    (18) expression -> . INT
+    (19) expression -> . BOOL
+    (20) expression -> . STRING
+    (21) expression -> . SELF
+    (22) expression -> . O_KEY block_list C_KEY
+    (25) expression -> . ID ASSIGNAMENT expression
+    (26) expression -> . expression POINT ID O_PAR arguments_list_opt C_PAR
+    (31) expression -> . expression AT TYPE_ID POINT ID O_PAR arguments_list_opt C_PAR
+    (32) expression -> . ID O_PAR arguments_list_opt C_PAR
+    (33) expression -> . expression PLUS expression
+    (34) expression -> . expression MINUS expression
+    (35) expression -> . expression STAR expression
+    (36) expression -> . expression DIV expression
+    (37) expression -> . expression LESS_THAN expression
+    (38) expression -> . expression LESS_EQUAL_THAN expression
+    (39) expression -> . expression EQUAL expression
+    (40) expression -> . O_PAR expression C_PAR
+    (41) expression -> . IF expression THEN expression ELSE expression FI
+    (42) expression -> . WHILE expression LOOP expression POOL
+    (43) expression -> . CASE expression OF actions_list ESAC
+    (47) expression -> . NEW TYPE_ID
+    (48) expression -> . ISVOID expression
+    (49) expression -> . DESTRUCTOR expression
+    (50) expression -> . NOT expression
+    (51) expression -> . let_expression
+    (52) let_expression -> . LET generate_instances IN expression
+
+    ID              shift and go to state 40
+    INT             shift and go to state 42
+    BOOL            shift and go to state 43
+    STRING          shift and go to state 44
+    SELF            shift and go to state 45
+    O_KEY           shift and go to state 46
+    O_PAR           shift and go to state 47
+    IF              shift and go to state 48
+    WHILE           shift and go to state 49
+    CASE            shift and go to state 50
+    NEW             shift and go to state 51
+    ISVOID          shift and go to state 52
+    DESTRUCTOR      shift and go to state 53
+    NOT             shift and go to state 54
+    LET             shift and go to state 56
+
+    block_list                     shift and go to state 70
+    expression                     shift and go to state 71
+    let_expression                 shift and go to state 55
+
+state 47
+
+    (40) expression -> O_PAR . expression C_PAR
+    (17) expression -> . ID
+    (18) expression -> . INT
+    (19) expression -> . BOOL
+    (20) expression -> . STRING
+    (21) expression -> . SELF
+    (22) expression -> . O_KEY block_list C_KEY
+    (25) expression -> . ID ASSIGNAMENT expression
+    (26) expression -> . expression POINT ID O_PAR arguments_list_opt C_PAR
+    (31) expression -> . expression AT TYPE_ID POINT ID O_PAR arguments_list_opt C_PAR
+    (32) expression -> . ID O_PAR arguments_list_opt C_PAR
+    (33) expression -> . expression PLUS expression
+    (34) expression -> . expression MINUS expression
+    (35) expression -> . expression STAR expression
+    (36) expression -> . expression DIV expression
+    (37) expression -> . expression LESS_THAN expression
+    (38) expression -> . expression LESS_EQUAL_THAN expression
+    (39) expression -> . expression EQUAL expression
+    (40) expression -> . O_PAR expression C_PAR
+    (41) expression -> . IF expression THEN expression ELSE expression FI
+    (42) expression -> . WHILE expression LOOP expression POOL
+    (43) expression -> . CASE expression OF actions_list ESAC
+    (47) expression -> . NEW TYPE_ID
+    (48) expression -> . ISVOID expression
+    (49) expression -> . DESTRUCTOR expression
+    (50) expression -> . NOT expression
+    (51) expression -> . let_expression
+    (52) let_expression -> . LET generate_instances IN expression
+
+    ID              shift and go to state 40
+    INT             shift and go to state 42
+    BOOL            shift and go to state 43
+    STRING          shift and go to state 44
+    SELF            shift and go to state 45
+    O_KEY           shift and go to state 46
+    O_PAR           shift and go to state 47
+    IF              shift and go to state 48
+    WHILE           shift and go to state 49
+    CASE            shift and go to state 50
+    NEW             shift and go to state 51
+    ISVOID          shift and go to state 52
+    DESTRUCTOR      shift and go to state 53
+    NOT             shift and go to state 54
+    LET             shift and go to state 56
+
+    expression                     shift and go to state 72
+    let_expression                 shift and go to state 55
+
+state 48
+
+    (41) expression -> IF . expression THEN expression ELSE expression FI
+    (17) expression -> . ID
+    (18) expression -> . INT
+    (19) expression -> . BOOL
+    (20) expression -> . STRING
+    (21) expression -> . SELF
+    (22) expression -> . O_KEY block_list C_KEY
+    (25) expression -> . ID ASSIGNAMENT expression
+    (26) expression -> . expression POINT ID O_PAR arguments_list_opt C_PAR
+    (31) expression -> . expression AT TYPE_ID POINT ID O_PAR arguments_list_opt C_PAR
+    (32) expression -> . ID O_PAR arguments_list_opt C_PAR
+    (33) expression -> . expression PLUS expression
+    (34) expression -> . expression MINUS expression
+    (35) expression -> . expression STAR expression
+    (36) expression -> . expression DIV expression
+    (37) expression -> . expression LESS_THAN expression
+    (38) expression -> . expression LESS_EQUAL_THAN expression
+    (39) expression -> . expression EQUAL expression
+    (40) expression -> . O_PAR expression C_PAR
+    (41) expression -> . IF expression THEN expression ELSE expression FI
+    (42) expression -> . WHILE expression LOOP expression POOL
+    (43) expression -> . CASE expression OF actions_list ESAC
+    (47) expression -> . NEW TYPE_ID
+    (48) expression -> . ISVOID expression
+    (49) expression -> . DESTRUCTOR expression
+    (50) expression -> . NOT expression
+    (51) expression -> . let_expression
+    (52) let_expression -> . LET generate_instances IN expression
+
+    ID              shift and go to state 40
+    INT             shift and go to state 42
+    BOOL            shift and go to state 43
+    STRING          shift and go to state 44
+    SELF            shift and go to state 45
+    O_KEY           shift and go to state 46
+    O_PAR           shift and go to state 47
+    IF              shift and go to state 48
+    WHILE           shift and go to state 49
+    CASE            shift and go to state 50
+    NEW             shift and go to state 51
+    ISVOID          shift and go to state 52
+    DESTRUCTOR      shift and go to state 53
+    NOT             shift and go to state 54
+    LET             shift and go to state 56
+
+    expression                     shift and go to state 73
+    let_expression                 shift and go to state 55
+
+state 49
+
+    (42) expression -> WHILE . expression LOOP expression POOL
+    (17) expression -> . ID
+    (18) expression -> . INT
+    (19) expression -> . BOOL
+    (20) expression -> . STRING
+    (21) expression -> . SELF
+    (22) expression -> . O_KEY block_list C_KEY
+    (25) expression -> . ID ASSIGNAMENT expression
+    (26) expression -> . expression POINT ID O_PAR arguments_list_opt C_PAR
+    (31) expression -> . expression AT TYPE_ID POINT ID O_PAR arguments_list_opt C_PAR
+    (32) expression -> . ID O_PAR arguments_list_opt C_PAR
+    (33) expression -> . expression PLUS expression
+    (34) expression -> . expression MINUS expression
+    (35) expression -> . expression STAR expression
+    (36) expression -> . expression DIV expression
+    (37) expression -> . expression LESS_THAN expression
+    (38) expression -> . expression LESS_EQUAL_THAN expression
+    (39) expression -> . expression EQUAL expression
+    (40) expression -> . O_PAR expression C_PAR
+    (41) expression -> . IF expression THEN expression ELSE expression FI
+    (42) expression -> . WHILE expression LOOP expression POOL
+    (43) expression -> . CASE expression OF actions_list ESAC
+    (47) expression -> . NEW TYPE_ID
+    (48) expression -> . ISVOID expression
+    (49) expression -> . DESTRUCTOR expression
+    (50) expression -> . NOT expression
+    (51) expression -> . let_expression
+    (52) let_expression -> . LET generate_instances IN expression
+
+    ID              shift and go to state 40
+    INT             shift and go to state 42
+    BOOL            shift and go to state 43
+    STRING          shift and go to state 44
+    SELF            shift and go to state 45
+    O_KEY           shift and go to state 46
+    O_PAR           shift and go to state 47
+    IF              shift and go to state 48
+    WHILE           shift and go to state 49
+    CASE            shift and go to state 50
+    NEW             shift and go to state 51
+    ISVOID          shift and go to state 52
+    DESTRUCTOR      shift and go to state 53
+    NOT             shift and go to state 54
+    LET             shift and go to state 56
+
+    expression                     shift and go to state 74
+    let_expression                 shift and go to state 55
+
+state 50
+
+    (43) expression -> CASE . expression OF actions_list ESAC
+    (17) expression -> . ID
+    (18) expression -> . INT
+    (19) expression -> . BOOL
+    (20) expression -> . STRING
+    (21) expression -> . SELF
+    (22) expression -> . O_KEY block_list C_KEY
+    (25) expression -> . ID ASSIGNAMENT expression
+    (26) expression -> . expression POINT ID O_PAR arguments_list_opt C_PAR
+    (31) expression -> . expression AT TYPE_ID POINT ID O_PAR arguments_list_opt C_PAR
+    (32) expression -> . ID O_PAR arguments_list_opt C_PAR
+    (33) expression -> . expression PLUS expression
+    (34) expression -> . expression MINUS expression
+    (35) expression -> . expression STAR expression
+    (36) expression -> . expression DIV expression
+    (37) expression -> . expression LESS_THAN expression
+    (38) expression -> . expression LESS_EQUAL_THAN expression
+    (39) expression -> . expression EQUAL expression
+    (40) expression -> . O_PAR expression C_PAR
+    (41) expression -> . IF expression THEN expression ELSE expression FI
+    (42) expression -> . WHILE expression LOOP expression POOL
+    (43) expression -> . CASE expression OF actions_list ESAC
+    (47) expression -> . NEW TYPE_ID
+    (48) expression -> . ISVOID expression
+    (49) expression -> . DESTRUCTOR expression
+    (50) expression -> . NOT expression
+    (51) expression -> . let_expression
+    (52) let_expression -> . LET generate_instances IN expression
+
+    ID              shift and go to state 40
+    INT             shift and go to state 42
+    BOOL            shift and go to state 43
+    STRING          shift and go to state 44
+    SELF            shift and go to state 45
+    O_KEY           shift and go to state 46
+    O_PAR           shift and go to state 47
+    IF              shift and go to state 48
+    WHILE           shift and go to state 49
+    CASE            shift and go to state 50
+    NEW             shift and go to state 51
+    ISVOID          shift and go to state 52
+    DESTRUCTOR      shift and go to state 53
+    NOT             shift and go to state 54
+    LET             shift and go to state 56
+
+    expression                     shift and go to state 75
+    let_expression                 shift and go to state 55
+
+state 51
+
+    (47) expression -> NEW . TYPE_ID
+
+    TYPE_ID         shift and go to state 76
+
+
+state 52
+
+    (48) expression -> ISVOID . expression
+    (17) expression -> . ID
+    (18) expression -> . INT
+    (19) expression -> . BOOL
+    (20) expression -> . STRING
+    (21) expression -> . SELF
+    (22) expression -> . O_KEY block_list C_KEY
+    (25) expression -> . ID ASSIGNAMENT expression
+    (26) expression -> . expression POINT ID O_PAR arguments_list_opt C_PAR
+    (31) expression -> . expression AT TYPE_ID POINT ID O_PAR arguments_list_opt C_PAR
+    (32) expression -> . ID O_PAR arguments_list_opt C_PAR
+    (33) expression -> . expression PLUS expression
+    (34) expression -> . expression MINUS expression
+    (35) expression -> . expression STAR expression
+    (36) expression -> . expression DIV expression
+    (37) expression -> . expression LESS_THAN expression
+    (38) expression -> . expression LESS_EQUAL_THAN expression
+    (39) expression -> . expression EQUAL expression
+    (40) expression -> . O_PAR expression C_PAR
+    (41) expression -> . IF expression THEN expression ELSE expression FI
+    (42) expression -> . WHILE expression LOOP expression POOL
+    (43) expression -> . CASE expression OF actions_list ESAC
+    (47) expression -> . NEW TYPE_ID
+    (48) expression -> . ISVOID expression
+    (49) expression -> . DESTRUCTOR expression
+    (50) expression -> . NOT expression
+    (51) expression -> . let_expression
+    (52) let_expression -> . LET generate_instances IN expression
+
+    ID              shift and go to state 40
+    INT             shift and go to state 42
+    BOOL            shift and go to state 43
+    STRING          shift and go to state 44
+    SELF            shift and go to state 45
+    O_KEY           shift and go to state 46
+    O_PAR           shift and go to state 47
+    IF              shift and go to state 48
+    WHILE           shift and go to state 49
+    CASE            shift and go to state 50
+    NEW             shift and go to state 51
+    ISVOID          shift and go to state 52
+    DESTRUCTOR      shift and go to state 53
+    NOT             shift and go to state 54
+    LET             shift and go to state 56
+
+    expression                     shift and go to state 77
+    let_expression                 shift and go to state 55
+
+state 53
+
+    (49) expression -> DESTRUCTOR . expression
+    (17) expression -> . ID
+    (18) expression -> . INT
+    (19) expression -> . BOOL
+    (20) expression -> . STRING
+    (21) expression -> . SELF
+    (22) expression -> . O_KEY block_list C_KEY
+    (25) expression -> . ID ASSIGNAMENT expression
+    (26) expression -> . expression POINT ID O_PAR arguments_list_opt C_PAR
+    (31) expression -> . expression AT TYPE_ID POINT ID O_PAR arguments_list_opt C_PAR
+    (32) expression -> . ID O_PAR arguments_list_opt C_PAR
+    (33) expression -> . expression PLUS expression
+    (34) expression -> . expression MINUS expression
+    (35) expression -> . expression STAR expression
+    (36) expression -> . expression DIV expression
+    (37) expression -> . expression LESS_THAN expression
+    (38) expression -> . expression LESS_EQUAL_THAN expression
+    (39) expression -> . expression EQUAL expression
+    (40) expression -> . O_PAR expression C_PAR
+    (41) expression -> . IF expression THEN expression ELSE expression FI
+    (42) expression -> . WHILE expression LOOP expression POOL
+    (43) expression -> . CASE expression OF actions_list ESAC
+    (47) expression -> . NEW TYPE_ID
+    (48) expression -> . ISVOID expression
+    (49) expression -> . DESTRUCTOR expression
+    (50) expression -> . NOT expression
+    (51) expression -> . let_expression
+    (52) let_expression -> . LET generate_instances IN expression
+
+    ID              shift and go to state 40
+    INT             shift and go to state 42
+    BOOL            shift and go to state 43
+    STRING          shift and go to state 44
+    SELF            shift and go to state 45
+    O_KEY           shift and go to state 46
+    O_PAR           shift and go to state 47
+    IF              shift and go to state 48
+    WHILE           shift and go to state 49
+    CASE            shift and go to state 50
+    NEW             shift and go to state 51
+    ISVOID          shift and go to state 52
+    DESTRUCTOR      shift and go to state 53
+    NOT             shift and go to state 54
+    LET             shift and go to state 56
+
+    expression                     shift and go to state 78
+    let_expression                 shift and go to state 55
+
+state 54
+
+    (50) expression -> NOT . expression
+    (17) expression -> . ID
+    (18) expression -> . INT
+    (19) expression -> . BOOL
+    (20) expression -> . STRING
+    (21) expression -> . SELF
+    (22) expression -> . O_KEY block_list C_KEY
+    (25) expression -> . ID ASSIGNAMENT expression
+    (26) expression -> . expression POINT ID O_PAR arguments_list_opt C_PAR
+    (31) expression -> . expression AT TYPE_ID POINT ID O_PAR arguments_list_opt C_PAR
+    (32) expression -> . ID O_PAR arguments_list_opt C_PAR
+    (33) expression -> . expression PLUS expression
+    (34) expression -> . expression MINUS expression
+    (35) expression -> . expression STAR expression
+    (36) expression -> . expression DIV expression
+    (37) expression -> . expression LESS_THAN expression
+    (38) expression -> . expression LESS_EQUAL_THAN expression
+    (39) expression -> . expression EQUAL expression
+    (40) expression -> . O_PAR expression C_PAR
+    (41) expression -> . IF expression THEN expression ELSE expression FI
+    (42) expression -> . WHILE expression LOOP expression POOL
+    (43) expression -> . CASE expression OF actions_list ESAC
+    (47) expression -> . NEW TYPE_ID
+    (48) expression -> . ISVOID expression
+    (49) expression -> . DESTRUCTOR expression
+    (50) expression -> . NOT expression
+    (51) expression -> . let_expression
+    (52) let_expression -> . LET generate_instances IN expression
+
+    ID              shift and go to state 40
+    INT             shift and go to state 42
+    BOOL            shift and go to state 43
+    STRING          shift and go to state 44
+    SELF            shift and go to state 45
+    O_KEY           shift and go to state 46
+    O_PAR           shift and go to state 47
+    IF              shift and go to state 48
+    WHILE           shift and go to state 49
+    CASE            shift and go to state 50
+    NEW             shift and go to state 51
+    ISVOID          shift and go to state 52
+    DESTRUCTOR      shift and go to state 53
+    NOT             shift and go to state 54
+    LET             shift and go to state 56
+
+    expression                     shift and go to state 79
+    let_expression                 shift and go to state 55
+
+state 55
+
+    (51) expression -> let_expression .
+
+    POINT           reduce using rule 51 (expression -> let_expression .)
+    AT              reduce using rule 51 (expression -> let_expression .)
+    PLUS            reduce using rule 51 (expression -> let_expression .)
+    MINUS           reduce using rule 51 (expression -> let_expression .)
+    STAR            reduce using rule 51 (expression -> let_expression .)
+    DIV             reduce using rule 51 (expression -> let_expression .)
+    LESS_THAN       reduce using rule 51 (expression -> let_expression .)
+    LESS_EQUAL_THAN reduce using rule 51 (expression -> let_expression .)
+    EQUAL           reduce using rule 51 (expression -> let_expression .)
+    POINT_AND_COMMA reduce using rule 51 (expression -> let_expression .)
+    C_PAR           reduce using rule 51 (expression -> let_expression .)
+    THEN            reduce using rule 51 (expression -> let_expression .)
+    LOOP            reduce using rule 51 (expression -> let_expression .)
+    OF              reduce using rule 51 (expression -> let_expression .)
+    C_KEY           reduce using rule 51 (expression -> let_expression .)
+    COMMA           reduce using rule 51 (expression -> let_expression .)
+    ELSE            reduce using rule 51 (expression -> let_expression .)
+    POOL            reduce using rule 51 (expression -> let_expression .)
+    FI              reduce using rule 51 (expression -> let_expression .)
+    IN              reduce using rule 51 (expression -> let_expression .)
+
+
+state 56
+
+    (52) let_expression -> LET . generate_instances IN expression
+    (53) generate_instances -> . ID TWO_POINTS TYPE_ID
+    (54) generate_instances -> . ID TWO_POINTS TYPE_ID ASSIGNAMENT expression
+    (55) generate_instances -> . generate_instances COMMA ID TWO_POINTS TYPE_ID
+    (56) generate_instances -> . generate_instances COMMA ID TWO_POINTS TYPE_ID ASSIGNAMENT expression
+
+    ID              shift and go to state 81
+
+    generate_instances             shift and go to state 80
+
+state 57
+
+    (10) feature -> ID O_PAR formal_params_list C_PAR TWO_POINTS TYPE_ID . O_KEY expression C_KEY
+
+    O_KEY           shift and go to state 82
+
+
+state 58
+
+    (11) feature -> ID O_PAR C_PAR TWO_POINTS TYPE_ID O_KEY . expression C_KEY
+    (17) expression -> . ID
+    (18) expression -> . INT
+    (19) expression -> . BOOL
+    (20) expression -> . STRING
+    (21) expression -> . SELF
+    (22) expression -> . O_KEY block_list C_KEY
+    (25) expression -> . ID ASSIGNAMENT expression
+    (26) expression -> . expression POINT ID O_PAR arguments_list_opt C_PAR
+    (31) expression -> . expression AT TYPE_ID POINT ID O_PAR arguments_list_opt C_PAR
+    (32) expression -> . ID O_PAR arguments_list_opt C_PAR
+    (33) expression -> . expression PLUS expression
+    (34) expression -> . expression MINUS expression
+    (35) expression -> . expression STAR expression
+    (36) expression -> . expression DIV expression
+    (37) expression -> . expression LESS_THAN expression
+    (38) expression -> . expression LESS_EQUAL_THAN expression
+    (39) expression -> . expression EQUAL expression
+    (40) expression -> . O_PAR expression C_PAR
+    (41) expression -> . IF expression THEN expression ELSE expression FI
+    (42) expression -> . WHILE expression LOOP expression POOL
+    (43) expression -> . CASE expression OF actions_list ESAC
+    (47) expression -> . NEW TYPE_ID
+    (48) expression -> . ISVOID expression
+    (49) expression -> . DESTRUCTOR expression
+    (50) expression -> . NOT expression
+    (51) expression -> . let_expression
+    (52) let_expression -> . LET generate_instances IN expression
+
+    ID              shift and go to state 40
+    INT             shift and go to state 42
+    BOOL            shift and go to state 43
+    STRING          shift and go to state 44
+    SELF            shift and go to state 45
+    O_KEY           shift and go to state 46
+    O_PAR           shift and go to state 47
+    IF              shift and go to state 48
+    WHILE           shift and go to state 49
+    CASE            shift and go to state 50
+    NEW             shift and go to state 51
+    ISVOID          shift and go to state 52
+    DESTRUCTOR      shift and go to state 53
+    NOT             shift and go to state 54
+    LET             shift and go to state 56
+
+    expression                     shift and go to state 83
+    let_expression                 shift and go to state 55
+
+state 59
+
+    (25) expression -> ID ASSIGNAMENT . expression
+    (17) expression -> . ID
+    (18) expression -> . INT
+    (19) expression -> . BOOL
+    (20) expression -> . STRING
+    (21) expression -> . SELF
+    (22) expression -> . O_KEY block_list C_KEY
+    (25) expression -> . ID ASSIGNAMENT expression
+    (26) expression -> . expression POINT ID O_PAR arguments_list_opt C_PAR
+    (31) expression -> . expression AT TYPE_ID POINT ID O_PAR arguments_list_opt C_PAR
+    (32) expression -> . ID O_PAR arguments_list_opt C_PAR
+    (33) expression -> . expression PLUS expression
+    (34) expression -> . expression MINUS expression
+    (35) expression -> . expression STAR expression
+    (36) expression -> . expression DIV expression
+    (37) expression -> . expression LESS_THAN expression
+    (38) expression -> . expression LESS_EQUAL_THAN expression
+    (39) expression -> . expression EQUAL expression
+    (40) expression -> . O_PAR expression C_PAR
+    (41) expression -> . IF expression THEN expression ELSE expression FI
+    (42) expression -> . WHILE expression LOOP expression POOL
+    (43) expression -> . CASE expression OF actions_list ESAC
+    (47) expression -> . NEW TYPE_ID
+    (48) expression -> . ISVOID expression
+    (49) expression -> . DESTRUCTOR expression
+    (50) expression -> . NOT expression
+    (51) expression -> . let_expression
+    (52) let_expression -> . LET generate_instances IN expression
+
+    ID              shift and go to state 40
+    INT             shift and go to state 42
+    BOOL            shift and go to state 43
+    STRING          shift and go to state 44
+    SELF            shift and go to state 45
+    O_KEY           shift and go to state 46
+    O_PAR           shift and go to state 47
+    IF              shift and go to state 48
+    WHILE           shift and go to state 49
+    CASE            shift and go to state 50
+    NEW             shift and go to state 51
+    ISVOID          shift and go to state 52
+    DESTRUCTOR      shift and go to state 53
+    NOT             shift and go to state 54
+    LET             shift and go to state 56
+
+    expression                     shift and go to state 84
+    let_expression                 shift and go to state 55
+
+state 60
+
+    (32) expression -> ID O_PAR . arguments_list_opt C_PAR
+    (27) arguments_list_opt -> . arguments_list
+    (28) arguments_list_opt -> . empty
+    (29) arguments_list -> . arguments_list COMMA expression
+    (30) arguments_list -> . expression
+    (57) empty -> .
+    (17) expression -> . ID
+    (18) expression -> . INT
+    (19) expression -> . BOOL
+    (20) expression -> . STRING
+    (21) expression -> . SELF
+    (22) expression -> . O_KEY block_list C_KEY
+    (25) expression -> . ID ASSIGNAMENT expression
+    (26) expression -> . expression POINT ID O_PAR arguments_list_opt C_PAR
+    (31) expression -> . expression AT TYPE_ID POINT ID O_PAR arguments_list_opt C_PAR
+    (32) expression -> . ID O_PAR arguments_list_opt C_PAR
+    (33) expression -> . expression PLUS expression
+    (34) expression -> . expression MINUS expression
+    (35) expression -> . expression STAR expression
+    (36) expression -> . expression DIV expression
+    (37) expression -> . expression LESS_THAN expression
+    (38) expression -> . expression LESS_EQUAL_THAN expression
+    (39) expression -> . expression EQUAL expression
+    (40) expression -> . O_PAR expression C_PAR
+    (41) expression -> . IF expression THEN expression ELSE expression FI
+    (42) expression -> . WHILE expression LOOP expression POOL
+    (43) expression -> . CASE expression OF actions_list ESAC
+    (47) expression -> . NEW TYPE_ID
+    (48) expression -> . ISVOID expression
+    (49) expression -> . DESTRUCTOR expression
+    (50) expression -> . NOT expression
+    (51) expression -> . let_expression
+    (52) let_expression -> . LET generate_instances IN expression
+
+    C_PAR           reduce using rule 57 (empty -> .)
+    ID              shift and go to state 40
+    INT             shift and go to state 42
+    BOOL            shift and go to state 43
+    STRING          shift and go to state 44
+    SELF            shift and go to state 45
+    O_KEY           shift and go to state 46
+    O_PAR           shift and go to state 47
+    IF              shift and go to state 48
+    WHILE           shift and go to state 49
+    CASE            shift and go to state 50
+    NEW             shift and go to state 51
+    ISVOID          shift and go to state 52
+    DESTRUCTOR      shift and go to state 53
+    NOT             shift and go to state 54
+    LET             shift and go to state 56
+
+    arguments_list_opt             shift and go to state 85
+    arguments_list                 shift and go to state 86
+    empty                          shift and go to state 87
+    expression                     shift and go to state 88
+    let_expression                 shift and go to state 55
+
+state 61
+
+    (26) expression -> expression POINT . ID O_PAR arguments_list_opt C_PAR
+
+    ID              shift and go to state 89
+
+
+state 62
+
+    (31) expression -> expression AT . TYPE_ID POINT ID O_PAR arguments_list_opt C_PAR
+
+    TYPE_ID         shift and go to state 90
+
+
+state 63
+
+    (33) expression -> expression PLUS . expression
+    (17) expression -> . ID
+    (18) expression -> . INT
+    (19) expression -> . BOOL
+    (20) expression -> . STRING
+    (21) expression -> . SELF
+    (22) expression -> . O_KEY block_list C_KEY
+    (25) expression -> . ID ASSIGNAMENT expression
+    (26) expression -> . expression POINT ID O_PAR arguments_list_opt C_PAR
+    (31) expression -> . expression AT TYPE_ID POINT ID O_PAR arguments_list_opt C_PAR
+    (32) expression -> . ID O_PAR arguments_list_opt C_PAR
+    (33) expression -> . expression PLUS expression
+    (34) expression -> . expression MINUS expression
+    (35) expression -> . expression STAR expression
+    (36) expression -> . expression DIV expression
+    (37) expression -> . expression LESS_THAN expression
+    (38) expression -> . expression LESS_EQUAL_THAN expression
+    (39) expression -> . expression EQUAL expression
+    (40) expression -> . O_PAR expression C_PAR
+    (41) expression -> . IF expression THEN expression ELSE expression FI
+    (42) expression -> . WHILE expression LOOP expression POOL
+    (43) expression -> . CASE expression OF actions_list ESAC
+    (47) expression -> . NEW TYPE_ID
+    (48) expression -> . ISVOID expression
+    (49) expression -> . DESTRUCTOR expression
+    (50) expression -> . NOT expression
+    (51) expression -> . let_expression
+    (52) let_expression -> . LET generate_instances IN expression
+
+    ID              shift and go to state 40
+    INT             shift and go to state 42
+    BOOL            shift and go to state 43
+    STRING          shift and go to state 44
+    SELF            shift and go to state 45
+    O_KEY           shift and go to state 46
+    O_PAR           shift and go to state 47
+    IF              shift and go to state 48
+    WHILE           shift and go to state 49
+    CASE            shift and go to state 50
+    NEW             shift and go to state 51
+    ISVOID          shift and go to state 52
+    DESTRUCTOR      shift and go to state 53
+    NOT             shift and go to state 54
+    LET             shift and go to state 56
+
+    expression                     shift and go to state 91
+    let_expression                 shift and go to state 55
+
+state 64
+
+    (34) expression -> expression MINUS . expression
+    (17) expression -> . ID
+    (18) expression -> . INT
+    (19) expression -> . BOOL
+    (20) expression -> . STRING
+    (21) expression -> . SELF
+    (22) expression -> . O_KEY block_list C_KEY
+    (25) expression -> . ID ASSIGNAMENT expression
+    (26) expression -> . expression POINT ID O_PAR arguments_list_opt C_PAR
+    (31) expression -> . expression AT TYPE_ID POINT ID O_PAR arguments_list_opt C_PAR
+    (32) expression -> . ID O_PAR arguments_list_opt C_PAR
+    (33) expression -> . expression PLUS expression
+    (34) expression -> . expression MINUS expression
+    (35) expression -> . expression STAR expression
+    (36) expression -> . expression DIV expression
+    (37) expression -> . expression LESS_THAN expression
+    (38) expression -> . expression LESS_EQUAL_THAN expression
+    (39) expression -> . expression EQUAL expression
+    (40) expression -> . O_PAR expression C_PAR
+    (41) expression -> . IF expression THEN expression ELSE expression FI
+    (42) expression -> . WHILE expression LOOP expression POOL
+    (43) expression -> . CASE expression OF actions_list ESAC
+    (47) expression -> . NEW TYPE_ID
+    (48) expression -> . ISVOID expression
+    (49) expression -> . DESTRUCTOR expression
+    (50) expression -> . NOT expression
+    (51) expression -> . let_expression
+    (52) let_expression -> . LET generate_instances IN expression
+
+    ID              shift and go to state 40
+    INT             shift and go to state 42
+    BOOL            shift and go to state 43
+    STRING          shift and go to state 44
+    SELF            shift and go to state 45
+    O_KEY           shift and go to state 46
+    O_PAR           shift and go to state 47
+    IF              shift and go to state 48
+    WHILE           shift and go to state 49
+    CASE            shift and go to state 50
+    NEW             shift and go to state 51
+    ISVOID          shift and go to state 52
+    DESTRUCTOR      shift and go to state 53
+    NOT             shift and go to state 54
+    LET             shift and go to state 56
+
+    expression                     shift and go to state 92
+    let_expression                 shift and go to state 55
+
+state 65
+
+    (35) expression -> expression STAR . expression
+    (17) expression -> . ID
+    (18) expression -> . INT
+    (19) expression -> . BOOL
+    (20) expression -> . STRING
+    (21) expression -> . SELF
+    (22) expression -> . O_KEY block_list C_KEY
+    (25) expression -> . ID ASSIGNAMENT expression
+    (26) expression -> . expression POINT ID O_PAR arguments_list_opt C_PAR
+    (31) expression -> . expression AT TYPE_ID POINT ID O_PAR arguments_list_opt C_PAR
+    (32) expression -> . ID O_PAR arguments_list_opt C_PAR
+    (33) expression -> . expression PLUS expression
+    (34) expression -> . expression MINUS expression
+    (35) expression -> . expression STAR expression
+    (36) expression -> . expression DIV expression
+    (37) expression -> . expression LESS_THAN expression
+    (38) expression -> . expression LESS_EQUAL_THAN expression
+    (39) expression -> . expression EQUAL expression
+    (40) expression -> . O_PAR expression C_PAR
+    (41) expression -> . IF expression THEN expression ELSE expression FI
+    (42) expression -> . WHILE expression LOOP expression POOL
+    (43) expression -> . CASE expression OF actions_list ESAC
+    (47) expression -> . NEW TYPE_ID
+    (48) expression -> . ISVOID expression
+    (49) expression -> . DESTRUCTOR expression
+    (50) expression -> . NOT expression
+    (51) expression -> . let_expression
+    (52) let_expression -> . LET generate_instances IN expression
+
+    ID              shift and go to state 40
+    INT             shift and go to state 42
+    BOOL            shift and go to state 43
+    STRING          shift and go to state 44
+    SELF            shift and go to state 45
+    O_KEY           shift and go to state 46
+    O_PAR           shift and go to state 47
+    IF              shift and go to state 48
+    WHILE           shift and go to state 49
+    CASE            shift and go to state 50
+    NEW             shift and go to state 51
+    ISVOID          shift and go to state 52
+    DESTRUCTOR      shift and go to state 53
+    NOT             shift and go to state 54
+    LET             shift and go to state 56
+
+    expression                     shift and go to state 93
+    let_expression                 shift and go to state 55
+
+state 66
+
+    (36) expression -> expression DIV . expression
+    (17) expression -> . ID
+    (18) expression -> . INT
+    (19) expression -> . BOOL
+    (20) expression -> . STRING
+    (21) expression -> . SELF
+    (22) expression -> . O_KEY block_list C_KEY
+    (25) expression -> . ID ASSIGNAMENT expression
+    (26) expression -> . expression POINT ID O_PAR arguments_list_opt C_PAR
+    (31) expression -> . expression AT TYPE_ID POINT ID O_PAR arguments_list_opt C_PAR
+    (32) expression -> . ID O_PAR arguments_list_opt C_PAR
+    (33) expression -> . expression PLUS expression
+    (34) expression -> . expression MINUS expression
+    (35) expression -> . expression STAR expression
+    (36) expression -> . expression DIV expression
+    (37) expression -> . expression LESS_THAN expression
+    (38) expression -> . expression LESS_EQUAL_THAN expression
+    (39) expression -> . expression EQUAL expression
+    (40) expression -> . O_PAR expression C_PAR
+    (41) expression -> . IF expression THEN expression ELSE expression FI
+    (42) expression -> . WHILE expression LOOP expression POOL
+    (43) expression -> . CASE expression OF actions_list ESAC
+    (47) expression -> . NEW TYPE_ID
+    (48) expression -> . ISVOID expression
+    (49) expression -> . DESTRUCTOR expression
+    (50) expression -> . NOT expression
+    (51) expression -> . let_expression
+    (52) let_expression -> . LET generate_instances IN expression
+
+    ID              shift and go to state 40
+    INT             shift and go to state 42
+    BOOL            shift and go to state 43
+    STRING          shift and go to state 44
+    SELF            shift and go to state 45
+    O_KEY           shift and go to state 46
+    O_PAR           shift and go to state 47
+    IF              shift and go to state 48
+    WHILE           shift and go to state 49
+    CASE            shift and go to state 50
+    NEW             shift and go to state 51
+    ISVOID          shift and go to state 52
+    DESTRUCTOR      shift and go to state 53
+    NOT             shift and go to state 54
+    LET             shift and go to state 56
+
+    expression                     shift and go to state 94
+    let_expression                 shift and go to state 55
+
+state 67
+
+    (37) expression -> expression LESS_THAN . expression
+    (17) expression -> . ID
+    (18) expression -> . INT
+    (19) expression -> . BOOL
+    (20) expression -> . STRING
+    (21) expression -> . SELF
+    (22) expression -> . O_KEY block_list C_KEY
+    (25) expression -> . ID ASSIGNAMENT expression
+    (26) expression -> . expression POINT ID O_PAR arguments_list_opt C_PAR
+    (31) expression -> . expression AT TYPE_ID POINT ID O_PAR arguments_list_opt C_PAR
+    (32) expression -> . ID O_PAR arguments_list_opt C_PAR
+    (33) expression -> . expression PLUS expression
+    (34) expression -> . expression MINUS expression
+    (35) expression -> . expression STAR expression
+    (36) expression -> . expression DIV expression
+    (37) expression -> . expression LESS_THAN expression
+    (38) expression -> . expression LESS_EQUAL_THAN expression
+    (39) expression -> . expression EQUAL expression
+    (40) expression -> . O_PAR expression C_PAR
+    (41) expression -> . IF expression THEN expression ELSE expression FI
+    (42) expression -> . WHILE expression LOOP expression POOL
+    (43) expression -> . CASE expression OF actions_list ESAC
+    (47) expression -> . NEW TYPE_ID
+    (48) expression -> . ISVOID expression
+    (49) expression -> . DESTRUCTOR expression
+    (50) expression -> . NOT expression
+    (51) expression -> . let_expression
+    (52) let_expression -> . LET generate_instances IN expression
+
+    ID              shift and go to state 40
+    INT             shift and go to state 42
+    BOOL            shift and go to state 43
+    STRING          shift and go to state 44
+    SELF            shift and go to state 45
+    O_KEY           shift and go to state 46
+    O_PAR           shift and go to state 47
+    IF              shift and go to state 48
+    WHILE           shift and go to state 49
+    CASE            shift and go to state 50
+    NEW             shift and go to state 51
+    ISVOID          shift and go to state 52
+    DESTRUCTOR      shift and go to state 53
+    NOT             shift and go to state 54
+    LET             shift and go to state 56
+
+    expression                     shift and go to state 95
+    let_expression                 shift and go to state 55
+
+state 68
+
+    (38) expression -> expression LESS_EQUAL_THAN . expression
+    (17) expression -> . ID
+    (18) expression -> . INT
+    (19) expression -> . BOOL
+    (20) expression -> . STRING
+    (21) expression -> . SELF
+    (22) expression -> . O_KEY block_list C_KEY
+    (25) expression -> . ID ASSIGNAMENT expression
+    (26) expression -> . expression POINT ID O_PAR arguments_list_opt C_PAR
+    (31) expression -> . expression AT TYPE_ID POINT ID O_PAR arguments_list_opt C_PAR
+    (32) expression -> . ID O_PAR arguments_list_opt C_PAR
+    (33) expression -> . expression PLUS expression
+    (34) expression -> . expression MINUS expression
+    (35) expression -> . expression STAR expression
+    (36) expression -> . expression DIV expression
+    (37) expression -> . expression LESS_THAN expression
+    (38) expression -> . expression LESS_EQUAL_THAN expression
+    (39) expression -> . expression EQUAL expression
+    (40) expression -> . O_PAR expression C_PAR
+    (41) expression -> . IF expression THEN expression ELSE expression FI
+    (42) expression -> . WHILE expression LOOP expression POOL
+    (43) expression -> . CASE expression OF actions_list ESAC
+    (47) expression -> . NEW TYPE_ID
+    (48) expression -> . ISVOID expression
+    (49) expression -> . DESTRUCTOR expression
+    (50) expression -> . NOT expression
+    (51) expression -> . let_expression
+    (52) let_expression -> . LET generate_instances IN expression
+
+    ID              shift and go to state 40
+    INT             shift and go to state 42
+    BOOL            shift and go to state 43
+    STRING          shift and go to state 44
+    SELF            shift and go to state 45
+    O_KEY           shift and go to state 46
+    O_PAR           shift and go to state 47
+    IF              shift and go to state 48
+    WHILE           shift and go to state 49
+    CASE            shift and go to state 50
+    NEW             shift and go to state 51
+    ISVOID          shift and go to state 52
+    DESTRUCTOR      shift and go to state 53
+    NOT             shift and go to state 54
+    LET             shift and go to state 56
+
+    expression                     shift and go to state 96
+    let_expression                 shift and go to state 55
+
+state 69
+
+    (39) expression -> expression EQUAL . expression
+    (17) expression -> . ID
+    (18) expression -> . INT
+    (19) expression -> . BOOL
+    (20) expression -> . STRING
+    (21) expression -> . SELF
+    (22) expression -> . O_KEY block_list C_KEY
+    (25) expression -> . ID ASSIGNAMENT expression
+    (26) expression -> . expression POINT ID O_PAR arguments_list_opt C_PAR
+    (31) expression -> . expression AT TYPE_ID POINT ID O_PAR arguments_list_opt C_PAR
+    (32) expression -> . ID O_PAR arguments_list_opt C_PAR
+    (33) expression -> . expression PLUS expression
+    (34) expression -> . expression MINUS expression
+    (35) expression -> . expression STAR expression
+    (36) expression -> . expression DIV expression
+    (37) expression -> . expression LESS_THAN expression
+    (38) expression -> . expression LESS_EQUAL_THAN expression
+    (39) expression -> . expression EQUAL expression
+    (40) expression -> . O_PAR expression C_PAR
+    (41) expression -> . IF expression THEN expression ELSE expression FI
+    (42) expression -> . WHILE expression LOOP expression POOL
+    (43) expression -> . CASE expression OF actions_list ESAC
+    (47) expression -> . NEW TYPE_ID
+    (48) expression -> . ISVOID expression
+    (49) expression -> . DESTRUCTOR expression
+    (50) expression -> . NOT expression
+    (51) expression -> . let_expression
+    (52) let_expression -> . LET generate_instances IN expression
+
+    ID              shift and go to state 40
+    INT             shift and go to state 42
+    BOOL            shift and go to state 43
+    STRING          shift and go to state 44
+    SELF            shift and go to state 45
+    O_KEY           shift and go to state 46
+    O_PAR           shift and go to state 47
+    IF              shift and go to state 48
+    WHILE           shift and go to state 49
+    CASE            shift and go to state 50
+    NEW             shift and go to state 51
+    ISVOID          shift and go to state 52
+    DESTRUCTOR      shift and go to state 53
+    NOT             shift and go to state 54
+    LET             shift and go to state 56
+
+    expression                     shift and go to state 97
+    let_expression                 shift and go to state 55
+
+state 70
+
+    (22) expression -> O_KEY block_list . C_KEY
+    (23) block_list -> block_list . expression POINT_AND_COMMA
+    (17) expression -> . ID
+    (18) expression -> . INT
+    (19) expression -> . BOOL
+    (20) expression -> . STRING
+    (21) expression -> . SELF
+    (22) expression -> . O_KEY block_list C_KEY
+    (25) expression -> . ID ASSIGNAMENT expression
+    (26) expression -> . expression POINT ID O_PAR arguments_list_opt C_PAR
+    (31) expression -> . expression AT TYPE_ID POINT ID O_PAR arguments_list_opt C_PAR
+    (32) expression -> . ID O_PAR arguments_list_opt C_PAR
+    (33) expression -> . expression PLUS expression
+    (34) expression -> . expression MINUS expression
+    (35) expression -> . expression STAR expression
+    (36) expression -> . expression DIV expression
+    (37) expression -> . expression LESS_THAN expression
+    (38) expression -> . expression LESS_EQUAL_THAN expression
+    (39) expression -> . expression EQUAL expression
+    (40) expression -> . O_PAR expression C_PAR
+    (41) expression -> . IF expression THEN expression ELSE expression FI
+    (42) expression -> . WHILE expression LOOP expression POOL
+    (43) expression -> . CASE expression OF actions_list ESAC
+    (47) expression -> . NEW TYPE_ID
+    (48) expression -> . ISVOID expression
+    (49) expression -> . DESTRUCTOR expression
+    (50) expression -> . NOT expression
+    (51) expression -> . let_expression
+    (52) let_expression -> . LET generate_instances IN expression
+
+    C_KEY           shift and go to state 98
+    ID              shift and go to state 40
+    INT             shift and go to state 42
+    BOOL            shift and go to state 43
+    STRING          shift and go to state 44
+    SELF            shift and go to state 45
+    O_KEY           shift and go to state 46
+    O_PAR           shift and go to state 47
+    IF              shift and go to state 48
+    WHILE           shift and go to state 49
+    CASE            shift and go to state 50
+    NEW             shift and go to state 51
+    ISVOID          shift and go to state 52
+    DESTRUCTOR      shift and go to state 53
+    NOT             shift and go to state 54
+    LET             shift and go to state 56
+
+    expression                     shift and go to state 99
+    let_expression                 shift and go to state 55
+
+state 71
+
+    (24) block_list -> expression . POINT_AND_COMMA
+    (26) expression -> expression . POINT ID O_PAR arguments_list_opt C_PAR
+    (31) expression -> expression . AT TYPE_ID POINT ID O_PAR arguments_list_opt C_PAR
+    (33) expression -> expression . PLUS expression
+    (34) expression -> expression . MINUS expression
+    (35) expression -> expression . STAR expression
+    (36) expression -> expression . DIV expression
+    (37) expression -> expression . LESS_THAN expression
+    (38) expression -> expression . LESS_EQUAL_THAN expression
+    (39) expression -> expression . EQUAL expression
+
+    POINT_AND_COMMA shift and go to state 100
+    POINT           shift and go to state 61
+    AT              shift and go to state 62
+    PLUS            shift and go to state 63
+    MINUS           shift and go to state 64
+    STAR            shift and go to state 65
+    DIV             shift and go to state 66
+    LESS_THAN       shift and go to state 67
+    LESS_EQUAL_THAN shift and go to state 68
+    EQUAL           shift and go to state 69
+
+
+state 72
+
+    (40) expression -> O_PAR expression . C_PAR
+    (26) expression -> expression . POINT ID O_PAR arguments_list_opt C_PAR
+    (31) expression -> expression . AT TYPE_ID POINT ID O_PAR arguments_list_opt C_PAR
+    (33) expression -> expression . PLUS expression
+    (34) expression -> expression . MINUS expression
+    (35) expression -> expression . STAR expression
+    (36) expression -> expression . DIV expression
+    (37) expression -> expression . LESS_THAN expression
+    (38) expression -> expression . LESS_EQUAL_THAN expression
+    (39) expression -> expression . EQUAL expression
+
+    C_PAR           shift and go to state 101
+    POINT           shift and go to state 61
+    AT              shift and go to state 62
+    PLUS            shift and go to state 63
+    MINUS           shift and go to state 64
+    STAR            shift and go to state 65
+    DIV             shift and go to state 66
+    LESS_THAN       shift and go to state 67
+    LESS_EQUAL_THAN shift and go to state 68
+    EQUAL           shift and go to state 69
+
+
+state 73
+
+    (41) expression -> IF expression . THEN expression ELSE expression FI
+    (26) expression -> expression . POINT ID O_PAR arguments_list_opt C_PAR
+    (31) expression -> expression . AT TYPE_ID POINT ID O_PAR arguments_list_opt C_PAR
+    (33) expression -> expression . PLUS expression
+    (34) expression -> expression . MINUS expression
+    (35) expression -> expression . STAR expression
+    (36) expression -> expression . DIV expression
+    (37) expression -> expression . LESS_THAN expression
+    (38) expression -> expression . LESS_EQUAL_THAN expression
+    (39) expression -> expression . EQUAL expression
+
+    THEN            shift and go to state 102
+    POINT           shift and go to state 61
+    AT              shift and go to state 62
+    PLUS            shift and go to state 63
+    MINUS           shift and go to state 64
+    STAR            shift and go to state 65
+    DIV             shift and go to state 66
+    LESS_THAN       shift and go to state 67
+    LESS_EQUAL_THAN shift and go to state 68
+    EQUAL           shift and go to state 69
+
+
+state 74
+
+    (42) expression -> WHILE expression . LOOP expression POOL
+    (26) expression -> expression . POINT ID O_PAR arguments_list_opt C_PAR
+    (31) expression -> expression . AT TYPE_ID POINT ID O_PAR arguments_list_opt C_PAR
+    (33) expression -> expression . PLUS expression
+    (34) expression -> expression . MINUS expression
+    (35) expression -> expression . STAR expression
+    (36) expression -> expression . DIV expression
+    (37) expression -> expression . LESS_THAN expression
+    (38) expression -> expression . LESS_EQUAL_THAN expression
+    (39) expression -> expression . EQUAL expression
+
+    LOOP            shift and go to state 103
+    POINT           shift and go to state 61
+    AT              shift and go to state 62
+    PLUS            shift and go to state 63
+    MINUS           shift and go to state 64
+    STAR            shift and go to state 65
+    DIV             shift and go to state 66
+    LESS_THAN       shift and go to state 67
+    LESS_EQUAL_THAN shift and go to state 68
+    EQUAL           shift and go to state 69
+
+
+state 75
+
+    (43) expression -> CASE expression . OF actions_list ESAC
+    (26) expression -> expression . POINT ID O_PAR arguments_list_opt C_PAR
+    (31) expression -> expression . AT TYPE_ID POINT ID O_PAR arguments_list_opt C_PAR
+    (33) expression -> expression . PLUS expression
+    (34) expression -> expression . MINUS expression
+    (35) expression -> expression . STAR expression
+    (36) expression -> expression . DIV expression
+    (37) expression -> expression . LESS_THAN expression
+    (38) expression -> expression . LESS_EQUAL_THAN expression
+    (39) expression -> expression . EQUAL expression
+
+    OF              shift and go to state 104
+    POINT           shift and go to state 61
+    AT              shift and go to state 62
+    PLUS            shift and go to state 63
+    MINUS           shift and go to state 64
+    STAR            shift and go to state 65
+    DIV             shift and go to state 66
+    LESS_THAN       shift and go to state 67
+    LESS_EQUAL_THAN shift and go to state 68
+    EQUAL           shift and go to state 69
+
+
+state 76
+
+    (47) expression -> NEW TYPE_ID .
+
+    POINT           reduce using rule 47 (expression -> NEW TYPE_ID .)
+    AT              reduce using rule 47 (expression -> NEW TYPE_ID .)
+    PLUS            reduce using rule 47 (expression -> NEW TYPE_ID .)
+    MINUS           reduce using rule 47 (expression -> NEW TYPE_ID .)
+    STAR            reduce using rule 47 (expression -> NEW TYPE_ID .)
+    DIV             reduce using rule 47 (expression -> NEW TYPE_ID .)
+    LESS_THAN       reduce using rule 47 (expression -> NEW TYPE_ID .)
+    LESS_EQUAL_THAN reduce using rule 47 (expression -> NEW TYPE_ID .)
+    EQUAL           reduce using rule 47 (expression -> NEW TYPE_ID .)
+    POINT_AND_COMMA reduce using rule 47 (expression -> NEW TYPE_ID .)
+    C_PAR           reduce using rule 47 (expression -> NEW TYPE_ID .)
+    THEN            reduce using rule 47 (expression -> NEW TYPE_ID .)
+    LOOP            reduce using rule 47 (expression -> NEW TYPE_ID .)
+    OF              reduce using rule 47 (expression -> NEW TYPE_ID .)
+    C_KEY           reduce using rule 47 (expression -> NEW TYPE_ID .)
+    COMMA           reduce using rule 47 (expression -> NEW TYPE_ID .)
+    ELSE            reduce using rule 47 (expression -> NEW TYPE_ID .)
+    POOL            reduce using rule 47 (expression -> NEW TYPE_ID .)
+    FI              reduce using rule 47 (expression -> NEW TYPE_ID .)
+    IN              reduce using rule 47 (expression -> NEW TYPE_ID .)
+
+
+state 77
+
+    (48) expression -> ISVOID expression .
+    (26) expression -> expression . POINT ID O_PAR arguments_list_opt C_PAR
+    (31) expression -> expression . AT TYPE_ID POINT ID O_PAR arguments_list_opt C_PAR
+    (33) expression -> expression . PLUS expression
+    (34) expression -> expression . MINUS expression
+    (35) expression -> expression . STAR expression
+    (36) expression -> expression . DIV expression
+    (37) expression -> expression . LESS_THAN expression
+    (38) expression -> expression . LESS_EQUAL_THAN expression
+    (39) expression -> expression . EQUAL expression
+
+    PLUS            reduce using rule 48 (expression -> ISVOID expression .)
+    MINUS           reduce using rule 48 (expression -> ISVOID expression .)
+    STAR            reduce using rule 48 (expression -> ISVOID expression .)
+    DIV             reduce using rule 48 (expression -> ISVOID expression .)
+    LESS_THAN       reduce using rule 48 (expression -> ISVOID expression .)
+    LESS_EQUAL_THAN reduce using rule 48 (expression -> ISVOID expression .)
+    EQUAL           reduce using rule 48 (expression -> ISVOID expression .)
+    POINT_AND_COMMA reduce using rule 48 (expression -> ISVOID expression .)
+    C_PAR           reduce using rule 48 (expression -> ISVOID expression .)
+    THEN            reduce using rule 48 (expression -> ISVOID expression .)
+    LOOP            reduce using rule 48 (expression -> ISVOID expression .)
+    OF              reduce using rule 48 (expression -> ISVOID expression .)
+    C_KEY           reduce using rule 48 (expression -> ISVOID expression .)
+    COMMA           reduce using rule 48 (expression -> ISVOID expression .)
+    ELSE            reduce using rule 48 (expression -> ISVOID expression .)
+    POOL            reduce using rule 48 (expression -> ISVOID expression .)
+    FI              reduce using rule 48 (expression -> ISVOID expression .)
+    IN              reduce using rule 48 (expression -> ISVOID expression .)
+    POINT           shift and go to state 61
+    AT              shift and go to state 62
+
+  ! POINT           [ reduce using rule 48 (expression -> ISVOID expression .) ]
+  ! AT              [ reduce using rule 48 (expression -> ISVOID expression .) ]
+  ! PLUS            [ shift and go to state 63 ]
+  ! MINUS           [ shift and go to state 64 ]
+  ! STAR            [ shift and go to state 65 ]
+  ! DIV             [ shift and go to state 66 ]
+  ! LESS_THAN       [ shift and go to state 67 ]
+  ! LESS_EQUAL_THAN [ shift and go to state 68 ]
+  ! EQUAL           [ shift and go to state 69 ]
+
+
+state 78
+
+    (49) expression -> DESTRUCTOR expression .
+    (26) expression -> expression . POINT ID O_PAR arguments_list_opt C_PAR
+    (31) expression -> expression . AT TYPE_ID POINT ID O_PAR arguments_list_opt C_PAR
+    (33) expression -> expression . PLUS expression
+    (34) expression -> expression . MINUS expression
+    (35) expression -> expression . STAR expression
+    (36) expression -> expression . DIV expression
+    (37) expression -> expression . LESS_THAN expression
+    (38) expression -> expression . LESS_EQUAL_THAN expression
+    (39) expression -> expression . EQUAL expression
+
+    PLUS            reduce using rule 49 (expression -> DESTRUCTOR expression .)
+    MINUS           reduce using rule 49 (expression -> DESTRUCTOR expression .)
+    STAR            reduce using rule 49 (expression -> DESTRUCTOR expression .)
+    DIV             reduce using rule 49 (expression -> DESTRUCTOR expression .)
+    LESS_THAN       reduce using rule 49 (expression -> DESTRUCTOR expression .)
+    LESS_EQUAL_THAN reduce using rule 49 (expression -> DESTRUCTOR expression .)
+    EQUAL           reduce using rule 49 (expression -> DESTRUCTOR expression .)
+    POINT_AND_COMMA reduce using rule 49 (expression -> DESTRUCTOR expression .)
+    C_PAR           reduce using rule 49 (expression -> DESTRUCTOR expression .)
+    THEN            reduce using rule 49 (expression -> DESTRUCTOR expression .)
+    LOOP            reduce using rule 49 (expression -> DESTRUCTOR expression .)
+    OF              reduce using rule 49 (expression -> DESTRUCTOR expression .)
+    C_KEY           reduce using rule 49 (expression -> DESTRUCTOR expression .)
+    COMMA           reduce using rule 49 (expression -> DESTRUCTOR expression .)
+    ELSE            reduce using rule 49 (expression -> DESTRUCTOR expression .)
+    POOL            reduce using rule 49 (expression -> DESTRUCTOR expression .)
+    FI              reduce using rule 49 (expression -> DESTRUCTOR expression .)
+    IN              reduce using rule 49 (expression -> DESTRUCTOR expression .)
+    POINT           shift and go to state 61
+    AT              shift and go to state 62
+
+  ! POINT           [ reduce using rule 49 (expression -> DESTRUCTOR expression .) ]
+  ! AT              [ reduce using rule 49 (expression -> DESTRUCTOR expression .) ]
+  ! PLUS            [ shift and go to state 63 ]
+  ! MINUS           [ shift and go to state 64 ]
+  ! STAR            [ shift and go to state 65 ]
+  ! DIV             [ shift and go to state 66 ]
+  ! LESS_THAN       [ shift and go to state 67 ]
+  ! LESS_EQUAL_THAN [ shift and go to state 68 ]
+  ! EQUAL           [ shift and go to state 69 ]
+
+
+state 79
+
+    (50) expression -> NOT expression .
+    (26) expression -> expression . POINT ID O_PAR arguments_list_opt C_PAR
+    (31) expression -> expression . AT TYPE_ID POINT ID O_PAR arguments_list_opt C_PAR
+    (33) expression -> expression . PLUS expression
+    (34) expression -> expression . MINUS expression
+    (35) expression -> expression . STAR expression
+    (36) expression -> expression . DIV expression
+    (37) expression -> expression . LESS_THAN expression
+    (38) expression -> expression . LESS_EQUAL_THAN expression
+    (39) expression -> expression . EQUAL expression
+
+    POINT_AND_COMMA reduce using rule 50 (expression -> NOT expression .)
+    C_PAR           reduce using rule 50 (expression -> NOT expression .)
+    THEN            reduce using rule 50 (expression -> NOT expression .)
+    LOOP            reduce using rule 50 (expression -> NOT expression .)
+    OF              reduce using rule 50 (expression -> NOT expression .)
+    C_KEY           reduce using rule 50 (expression -> NOT expression .)
+    COMMA           reduce using rule 50 (expression -> NOT expression .)
+    ELSE            reduce using rule 50 (expression -> NOT expression .)
+    POOL            reduce using rule 50 (expression -> NOT expression .)
+    FI              reduce using rule 50 (expression -> NOT expression .)
+    IN              reduce using rule 50 (expression -> NOT expression .)
+    POINT           shift and go to state 61
+    AT              shift and go to state 62
+    PLUS            shift and go to state 63
+    MINUS           shift and go to state 64
+    STAR            shift and go to state 65
+    DIV             shift and go to state 66
+    LESS_THAN       shift and go to state 67
+    LESS_EQUAL_THAN shift and go to state 68
+    EQUAL           shift and go to state 69
+
+  ! POINT           [ reduce using rule 50 (expression -> NOT expression .) ]
+  ! AT              [ reduce using rule 50 (expression -> NOT expression .) ]
+  ! PLUS            [ reduce using rule 50 (expression -> NOT expression .) ]
+  ! MINUS           [ reduce using rule 50 (expression -> NOT expression .) ]
+  ! STAR            [ reduce using rule 50 (expression -> NOT expression .) ]
+  ! DIV             [ reduce using rule 50 (expression -> NOT expression .) ]
+  ! LESS_THAN       [ reduce using rule 50 (expression -> NOT expression .) ]
+  ! LESS_EQUAL_THAN [ reduce using rule 50 (expression -> NOT expression .) ]
+  ! EQUAL           [ reduce using rule 50 (expression -> NOT expression .) ]
+
+
+state 80
+
+    (52) let_expression -> LET generate_instances . IN expression
+    (55) generate_instances -> generate_instances . COMMA ID TWO_POINTS TYPE_ID
+    (56) generate_instances -> generate_instances . COMMA ID TWO_POINTS TYPE_ID ASSIGNAMENT expression
+
+    IN              shift and go to state 105
+    COMMA           shift and go to state 106
+
+
+state 81
+
+    (53) generate_instances -> ID . TWO_POINTS TYPE_ID
+    (54) generate_instances -> ID . TWO_POINTS TYPE_ID ASSIGNAMENT expression
+
+    TWO_POINTS      shift and go to state 107
+
+
+state 82
+
+    (10) feature -> ID O_PAR formal_params_list C_PAR TWO_POINTS TYPE_ID O_KEY . expression C_KEY
+    (17) expression -> . ID
+    (18) expression -> . INT
+    (19) expression -> . BOOL
+    (20) expression -> . STRING
+    (21) expression -> . SELF
+    (22) expression -> . O_KEY block_list C_KEY
+    (25) expression -> . ID ASSIGNAMENT expression
+    (26) expression -> . expression POINT ID O_PAR arguments_list_opt C_PAR
+    (31) expression -> . expression AT TYPE_ID POINT ID O_PAR arguments_list_opt C_PAR
+    (32) expression -> . ID O_PAR arguments_list_opt C_PAR
+    (33) expression -> . expression PLUS expression
+    (34) expression -> . expression MINUS expression
+    (35) expression -> . expression STAR expression
+    (36) expression -> . expression DIV expression
+    (37) expression -> . expression LESS_THAN expression
+    (38) expression -> . expression LESS_EQUAL_THAN expression
+    (39) expression -> . expression EQUAL expression
+    (40) expression -> . O_PAR expression C_PAR
+    (41) expression -> . IF expression THEN expression ELSE expression FI
+    (42) expression -> . WHILE expression LOOP expression POOL
+    (43) expression -> . CASE expression OF actions_list ESAC
+    (47) expression -> . NEW TYPE_ID
+    (48) expression -> . ISVOID expression
+    (49) expression -> . DESTRUCTOR expression
+    (50) expression -> . NOT expression
+    (51) expression -> . let_expression
+    (52) let_expression -> . LET generate_instances IN expression
+
+    ID              shift and go to state 40
+    INT             shift and go to state 42
+    BOOL            shift and go to state 43
+    STRING          shift and go to state 44
+    SELF            shift and go to state 45
+    O_KEY           shift and go to state 46
+    O_PAR           shift and go to state 47
+    IF              shift and go to state 48
+    WHILE           shift and go to state 49
+    CASE            shift and go to state 50
+    NEW             shift and go to state 51
+    ISVOID          shift and go to state 52
+    DESTRUCTOR      shift and go to state 53
+    NOT             shift and go to state 54
+    LET             shift and go to state 56
+
+    expression                     shift and go to state 108
+    let_expression                 shift and go to state 55
+
+state 83
+
+    (11) feature -> ID O_PAR C_PAR TWO_POINTS TYPE_ID O_KEY expression . C_KEY
+    (26) expression -> expression . POINT ID O_PAR arguments_list_opt C_PAR
+    (31) expression -> expression . AT TYPE_ID POINT ID O_PAR arguments_list_opt C_PAR
+    (33) expression -> expression . PLUS expression
+    (34) expression -> expression . MINUS expression
+    (35) expression -> expression . STAR expression
+    (36) expression -> expression . DIV expression
+    (37) expression -> expression . LESS_THAN expression
+    (38) expression -> expression . LESS_EQUAL_THAN expression
+    (39) expression -> expression . EQUAL expression
+
+    C_KEY           shift and go to state 109
+    POINT           shift and go to state 61
+    AT              shift and go to state 62
+    PLUS            shift and go to state 63
+    MINUS           shift and go to state 64
+    STAR            shift and go to state 65
+    DIV             shift and go to state 66
+    LESS_THAN       shift and go to state 67
+    LESS_EQUAL_THAN shift and go to state 68
+    EQUAL           shift and go to state 69
+
+
+state 84
+
+    (25) expression -> ID ASSIGNAMENT expression .
+    (26) expression -> expression . POINT ID O_PAR arguments_list_opt C_PAR
+    (31) expression -> expression . AT TYPE_ID POINT ID O_PAR arguments_list_opt C_PAR
+    (33) expression -> expression . PLUS expression
+    (34) expression -> expression . MINUS expression
+    (35) expression -> expression . STAR expression
+    (36) expression -> expression . DIV expression
+    (37) expression -> expression . LESS_THAN expression
+    (38) expression -> expression . LESS_EQUAL_THAN expression
+    (39) expression -> expression . EQUAL expression
+
+    POINT_AND_COMMA reduce using rule 25 (expression -> ID ASSIGNAMENT expression .)
+    C_PAR           reduce using rule 25 (expression -> ID ASSIGNAMENT expression .)
+    THEN            reduce using rule 25 (expression -> ID ASSIGNAMENT expression .)
+    LOOP            reduce using rule 25 (expression -> ID ASSIGNAMENT expression .)
+    OF              reduce using rule 25 (expression -> ID ASSIGNAMENT expression .)
+    C_KEY           reduce using rule 25 (expression -> ID ASSIGNAMENT expression .)
+    COMMA           reduce using rule 25 (expression -> ID ASSIGNAMENT expression .)
+    ELSE            reduce using rule 25 (expression -> ID ASSIGNAMENT expression .)
+    POOL            reduce using rule 25 (expression -> ID ASSIGNAMENT expression .)
+    FI              reduce using rule 25 (expression -> ID ASSIGNAMENT expression .)
+    IN              reduce using rule 25 (expression -> ID ASSIGNAMENT expression .)
+    POINT           shift and go to state 61
+    AT              shift and go to state 62
+    PLUS            shift and go to state 63
+    MINUS           shift and go to state 64
+    STAR            shift and go to state 65
+    DIV             shift and go to state 66
+    LESS_THAN       shift and go to state 67
+    LESS_EQUAL_THAN shift and go to state 68
+    EQUAL           shift and go to state 69
+
+  ! POINT           [ reduce using rule 25 (expression -> ID ASSIGNAMENT expression .) ]
+  ! AT              [ reduce using rule 25 (expression -> ID ASSIGNAMENT expression .) ]
+  ! PLUS            [ reduce using rule 25 (expression -> ID ASSIGNAMENT expression .) ]
+  ! MINUS           [ reduce using rule 25 (expression -> ID ASSIGNAMENT expression .) ]
+  ! STAR            [ reduce using rule 25 (expression -> ID ASSIGNAMENT expression .) ]
+  ! DIV             [ reduce using rule 25 (expression -> ID ASSIGNAMENT expression .) ]
+  ! LESS_THAN       [ reduce using rule 25 (expression -> ID ASSIGNAMENT expression .) ]
+  ! LESS_EQUAL_THAN [ reduce using rule 25 (expression -> ID ASSIGNAMENT expression .) ]
+  ! EQUAL           [ reduce using rule 25 (expression -> ID ASSIGNAMENT expression .) ]
+
+
+state 85
+
+    (32) expression -> ID O_PAR arguments_list_opt . C_PAR
+
+    C_PAR           shift and go to state 110
+
+
+state 86
+
+    (27) arguments_list_opt -> arguments_list .
+    (29) arguments_list -> arguments_list . COMMA expression
+
+    C_PAR           reduce using rule 27 (arguments_list_opt -> arguments_list .)
+    COMMA           shift and go to state 111
+
+
+state 87
+
+    (28) arguments_list_opt -> empty .
+
+    C_PAR           reduce using rule 28 (arguments_list_opt -> empty .)
+
+
+state 88
+
+    (30) arguments_list -> expression .
+    (26) expression -> expression . POINT ID O_PAR arguments_list_opt C_PAR
+    (31) expression -> expression . AT TYPE_ID POINT ID O_PAR arguments_list_opt C_PAR
+    (33) expression -> expression . PLUS expression
+    (34) expression -> expression . MINUS expression
+    (35) expression -> expression . STAR expression
+    (36) expression -> expression . DIV expression
+    (37) expression -> expression . LESS_THAN expression
+    (38) expression -> expression . LESS_EQUAL_THAN expression
+    (39) expression -> expression . EQUAL expression
+
+    COMMA           reduce using rule 30 (arguments_list -> expression .)
+    C_PAR           reduce using rule 30 (arguments_list -> expression .)
+    POINT           shift and go to state 61
+    AT              shift and go to state 62
+    PLUS            shift and go to state 63
+    MINUS           shift and go to state 64
+    STAR            shift and go to state 65
+    DIV             shift and go to state 66
+    LESS_THAN       shift and go to state 67
+    LESS_EQUAL_THAN shift and go to state 68
+    EQUAL           shift and go to state 69
+
+
+state 89
+
+    (26) expression -> expression POINT ID . O_PAR arguments_list_opt C_PAR
+
+    O_PAR           shift and go to state 112
+
+
+state 90
+
+    (31) expression -> expression AT TYPE_ID . POINT ID O_PAR arguments_list_opt C_PAR
+
+    POINT           shift and go to state 113
+
+
+state 91
+
+    (33) expression -> expression PLUS expression .
+    (26) expression -> expression . POINT ID O_PAR arguments_list_opt C_PAR
+    (31) expression -> expression . AT TYPE_ID POINT ID O_PAR arguments_list_opt C_PAR
+    (33) expression -> expression . PLUS expression
+    (34) expression -> expression . MINUS expression
+    (35) expression -> expression . STAR expression
+    (36) expression -> expression . DIV expression
+    (37) expression -> expression . LESS_THAN expression
+    (38) expression -> expression . LESS_EQUAL_THAN expression
+    (39) expression -> expression . EQUAL expression
+
+    PLUS            reduce using rule 33 (expression -> expression PLUS expression .)
+    MINUS           reduce using rule 33 (expression -> expression PLUS expression .)
+    LESS_THAN       reduce using rule 33 (expression -> expression PLUS expression .)
+    LESS_EQUAL_THAN reduce using rule 33 (expression -> expression PLUS expression .)
+    EQUAL           reduce using rule 33 (expression -> expression PLUS expression .)
+    POINT_AND_COMMA reduce using rule 33 (expression -> expression PLUS expression .)
+    C_PAR           reduce using rule 33 (expression -> expression PLUS expression .)
+    THEN            reduce using rule 33 (expression -> expression PLUS expression .)
+    LOOP            reduce using rule 33 (expression -> expression PLUS expression .)
+    OF              reduce using rule 33 (expression -> expression PLUS expression .)
+    C_KEY           reduce using rule 33 (expression -> expression PLUS expression .)
+    COMMA           reduce using rule 33 (expression -> expression PLUS expression .)
+    ELSE            reduce using rule 33 (expression -> expression PLUS expression .)
+    POOL            reduce using rule 33 (expression -> expression PLUS expression .)
+    FI              reduce using rule 33 (expression -> expression PLUS expression .)
+    IN              reduce using rule 33 (expression -> expression PLUS expression .)
+    POINT           shift and go to state 61
+    AT              shift and go to state 62
+    STAR            shift and go to state 65
+    DIV             shift and go to state 66
+
+  ! POINT           [ reduce using rule 33 (expression -> expression PLUS expression .) ]
+  ! AT              [ reduce using rule 33 (expression -> expression PLUS expression .) ]
+  ! STAR            [ reduce using rule 33 (expression -> expression PLUS expression .) ]
+  ! DIV             [ reduce using rule 33 (expression -> expression PLUS expression .) ]
+  ! PLUS            [ shift and go to state 63 ]
+  ! MINUS           [ shift and go to state 64 ]
+  ! LESS_THAN       [ shift and go to state 67 ]
+  ! LESS_EQUAL_THAN [ shift and go to state 68 ]
+  ! EQUAL           [ shift and go to state 69 ]
+
+
+state 92
+
+    (34) expression -> expression MINUS expression .
+    (26) expression -> expression . POINT ID O_PAR arguments_list_opt C_PAR
+    (31) expression -> expression . AT TYPE_ID POINT ID O_PAR arguments_list_opt C_PAR
+    (33) expression -> expression . PLUS expression
+    (34) expression -> expression . MINUS expression
+    (35) expression -> expression . STAR expression
+    (36) expression -> expression . DIV expression
+    (37) expression -> expression . LESS_THAN expression
+    (38) expression -> expression . LESS_EQUAL_THAN expression
+    (39) expression -> expression . EQUAL expression
+
+    PLUS            reduce using rule 34 (expression -> expression MINUS expression .)
+    MINUS           reduce using rule 34 (expression -> expression MINUS expression .)
+    LESS_THAN       reduce using rule 34 (expression -> expression MINUS expression .)
+    LESS_EQUAL_THAN reduce using rule 34 (expression -> expression MINUS expression .)
+    EQUAL           reduce using rule 34 (expression -> expression MINUS expression .)
+    POINT_AND_COMMA reduce using rule 34 (expression -> expression MINUS expression .)
+    C_PAR           reduce using rule 34 (expression -> expression MINUS expression .)
+    THEN            reduce using rule 34 (expression -> expression MINUS expression .)
+    LOOP            reduce using rule 34 (expression -> expression MINUS expression .)
+    OF              reduce using rule 34 (expression -> expression MINUS expression .)
+    C_KEY           reduce using rule 34 (expression -> expression MINUS expression .)
+    COMMA           reduce using rule 34 (expression -> expression MINUS expression .)
+    ELSE            reduce using rule 34 (expression -> expression MINUS expression .)
+    POOL            reduce using rule 34 (expression -> expression MINUS expression .)
+    FI              reduce using rule 34 (expression -> expression MINUS expression .)
+    IN              reduce using rule 34 (expression -> expression MINUS expression .)
+    POINT           shift and go to state 61
+    AT              shift and go to state 62
+    STAR            shift and go to state 65
+    DIV             shift and go to state 66
+
+  ! POINT           [ reduce using rule 34 (expression -> expression MINUS expression .) ]
+  ! AT              [ reduce using rule 34 (expression -> expression MINUS expression .) ]
+  ! STAR            [ reduce using rule 34 (expression -> expression MINUS expression .) ]
+  ! DIV             [ reduce using rule 34 (expression -> expression MINUS expression .) ]
+  ! PLUS            [ shift and go to state 63 ]
+  ! MINUS           [ shift and go to state 64 ]
+  ! LESS_THAN       [ shift and go to state 67 ]
+  ! LESS_EQUAL_THAN [ shift and go to state 68 ]
+  ! EQUAL           [ shift and go to state 69 ]
+
+
+state 93
+
+    (35) expression -> expression STAR expression .
+    (26) expression -> expression . POINT ID O_PAR arguments_list_opt C_PAR
+    (31) expression -> expression . AT TYPE_ID POINT ID O_PAR arguments_list_opt C_PAR
+    (33) expression -> expression . PLUS expression
+    (34) expression -> expression . MINUS expression
+    (35) expression -> expression . STAR expression
+    (36) expression -> expression . DIV expression
+    (37) expression -> expression . LESS_THAN expression
+    (38) expression -> expression . LESS_EQUAL_THAN expression
+    (39) expression -> expression . EQUAL expression
+
+    PLUS            reduce using rule 35 (expression -> expression STAR expression .)
+    MINUS           reduce using rule 35 (expression -> expression STAR expression .)
+    STAR            reduce using rule 35 (expression -> expression STAR expression .)
+    DIV             reduce using rule 35 (expression -> expression STAR expression .)
+    LESS_THAN       reduce using rule 35 (expression -> expression STAR expression .)
+    LESS_EQUAL_THAN reduce using rule 35 (expression -> expression STAR expression .)
+    EQUAL           reduce using rule 35 (expression -> expression STAR expression .)
+    POINT_AND_COMMA reduce using rule 35 (expression -> expression STAR expression .)
+    C_PAR           reduce using rule 35 (expression -> expression STAR expression .)
+    THEN            reduce using rule 35 (expression -> expression STAR expression .)
+    LOOP            reduce using rule 35 (expression -> expression STAR expression .)
+    OF              reduce using rule 35 (expression -> expression STAR expression .)
+    C_KEY           reduce using rule 35 (expression -> expression STAR expression .)
+    COMMA           reduce using rule 35 (expression -> expression STAR expression .)
+    ELSE            reduce using rule 35 (expression -> expression STAR expression .)
+    POOL            reduce using rule 35 (expression -> expression STAR expression .)
+    FI              reduce using rule 35 (expression -> expression STAR expression .)
+    IN              reduce using rule 35 (expression -> expression STAR expression .)
+    POINT           shift and go to state 61
+    AT              shift and go to state 62
+
+  ! POINT           [ reduce using rule 35 (expression -> expression STAR expression .) ]
+  ! AT              [ reduce using rule 35 (expression -> expression STAR expression .) ]
+  ! PLUS            [ shift and go to state 63 ]
+  ! MINUS           [ shift and go to state 64 ]
+  ! STAR            [ shift and go to state 65 ]
+  ! DIV             [ shift and go to state 66 ]
+  ! LESS_THAN       [ shift and go to state 67 ]
+  ! LESS_EQUAL_THAN [ shift and go to state 68 ]
+  ! EQUAL           [ shift and go to state 69 ]
+
+
+state 94
+
+    (36) expression -> expression DIV expression .
+    (26) expression -> expression . POINT ID O_PAR arguments_list_opt C_PAR
+    (31) expression -> expression . AT TYPE_ID POINT ID O_PAR arguments_list_opt C_PAR
+    (33) expression -> expression . PLUS expression
+    (34) expression -> expression . MINUS expression
+    (35) expression -> expression . STAR expression
+    (36) expression -> expression . DIV expression
+    (37) expression -> expression . LESS_THAN expression
+    (38) expression -> expression . LESS_EQUAL_THAN expression
+    (39) expression -> expression . EQUAL expression
+
+    PLUS            reduce using rule 36 (expression -> expression DIV expression .)
+    MINUS           reduce using rule 36 (expression -> expression DIV expression .)
+    STAR            reduce using rule 36 (expression -> expression DIV expression .)
+    DIV             reduce using rule 36 (expression -> expression DIV expression .)
+    LESS_THAN       reduce using rule 36 (expression -> expression DIV expression .)
+    LESS_EQUAL_THAN reduce using rule 36 (expression -> expression DIV expression .)
+    EQUAL           reduce using rule 36 (expression -> expression DIV expression .)
+    POINT_AND_COMMA reduce using rule 36 (expression -> expression DIV expression .)
+    C_PAR           reduce using rule 36 (expression -> expression DIV expression .)
+    THEN            reduce using rule 36 (expression -> expression DIV expression .)
+    LOOP            reduce using rule 36 (expression -> expression DIV expression .)
+    OF              reduce using rule 36 (expression -> expression DIV expression .)
+    C_KEY           reduce using rule 36 (expression -> expression DIV expression .)
+    COMMA           reduce using rule 36 (expression -> expression DIV expression .)
+    ELSE            reduce using rule 36 (expression -> expression DIV expression .)
+    POOL            reduce using rule 36 (expression -> expression DIV expression .)
+    FI              reduce using rule 36 (expression -> expression DIV expression .)
+    IN              reduce using rule 36 (expression -> expression DIV expression .)
+    POINT           shift and go to state 61
+    AT              shift and go to state 62
+
+  ! POINT           [ reduce using rule 36 (expression -> expression DIV expression .) ]
+  ! AT              [ reduce using rule 36 (expression -> expression DIV expression .) ]
+  ! PLUS            [ shift and go to state 63 ]
+  ! MINUS           [ shift and go to state 64 ]
+  ! STAR            [ shift and go to state 65 ]
+  ! DIV             [ shift and go to state 66 ]
+  ! LESS_THAN       [ shift and go to state 67 ]
+  ! LESS_EQUAL_THAN [ shift and go to state 68 ]
+  ! EQUAL           [ shift and go to state 69 ]
+
+
+state 95
+
+    (37) expression -> expression LESS_THAN expression .
+    (26) expression -> expression . POINT ID O_PAR arguments_list_opt C_PAR
+    (31) expression -> expression . AT TYPE_ID POINT ID O_PAR arguments_list_opt C_PAR
+    (33) expression -> expression . PLUS expression
+    (34) expression -> expression . MINUS expression
+    (35) expression -> expression . STAR expression
+    (36) expression -> expression . DIV expression
+    (37) expression -> expression . LESS_THAN expression
+    (38) expression -> expression . LESS_EQUAL_THAN expression
+    (39) expression -> expression . EQUAL expression
+
+    LESS_THAN       reduce using rule 37 (expression -> expression LESS_THAN expression .)
+    LESS_EQUAL_THAN reduce using rule 37 (expression -> expression LESS_THAN expression .)
+    EQUAL           reduce using rule 37 (expression -> expression LESS_THAN expression .)
+    POINT_AND_COMMA reduce using rule 37 (expression -> expression LESS_THAN expression .)
+    C_PAR           reduce using rule 37 (expression -> expression LESS_THAN expression .)
+    THEN            reduce using rule 37 (expression -> expression LESS_THAN expression .)
+    LOOP            reduce using rule 37 (expression -> expression LESS_THAN expression .)
+    OF              reduce using rule 37 (expression -> expression LESS_THAN expression .)
+    C_KEY           reduce using rule 37 (expression -> expression LESS_THAN expression .)
+    COMMA           reduce using rule 37 (expression -> expression LESS_THAN expression .)
+    ELSE            reduce using rule 37 (expression -> expression LESS_THAN expression .)
+    POOL            reduce using rule 37 (expression -> expression LESS_THAN expression .)
+    FI              reduce using rule 37 (expression -> expression LESS_THAN expression .)
+    IN              reduce using rule 37 (expression -> expression LESS_THAN expression .)
+    POINT           shift and go to state 61
+    AT              shift and go to state 62
+    PLUS            shift and go to state 63
+    MINUS           shift and go to state 64
+    STAR            shift and go to state 65
+    DIV             shift and go to state 66
+
+  ! POINT           [ reduce using rule 37 (expression -> expression LESS_THAN expression .) ]
+  ! AT              [ reduce using rule 37 (expression -> expression LESS_THAN expression .) ]
+  ! PLUS            [ reduce using rule 37 (expression -> expression LESS_THAN expression .) ]
+  ! MINUS           [ reduce using rule 37 (expression -> expression LESS_THAN expression .) ]
+  ! STAR            [ reduce using rule 37 (expression -> expression LESS_THAN expression .) ]
+  ! DIV             [ reduce using rule 37 (expression -> expression LESS_THAN expression .) ]
+  ! LESS_THAN       [ shift and go to state 67 ]
+  ! LESS_EQUAL_THAN [ shift and go to state 68 ]
+  ! EQUAL           [ shift and go to state 69 ]
+
+
+state 96
+
+    (38) expression -> expression LESS_EQUAL_THAN expression .
+    (26) expression -> expression . POINT ID O_PAR arguments_list_opt C_PAR
+    (31) expression -> expression . AT TYPE_ID POINT ID O_PAR arguments_list_opt C_PAR
+    (33) expression -> expression . PLUS expression
+    (34) expression -> expression . MINUS expression
+    (35) expression -> expression . STAR expression
+    (36) expression -> expression . DIV expression
+    (37) expression -> expression . LESS_THAN expression
+    (38) expression -> expression . LESS_EQUAL_THAN expression
+    (39) expression -> expression . EQUAL expression
+
+    LESS_THAN       reduce using rule 38 (expression -> expression LESS_EQUAL_THAN expression .)
+    LESS_EQUAL_THAN reduce using rule 38 (expression -> expression LESS_EQUAL_THAN expression .)
+    EQUAL           reduce using rule 38 (expression -> expression LESS_EQUAL_THAN expression .)
+    POINT_AND_COMMA reduce using rule 38 (expression -> expression LESS_EQUAL_THAN expression .)
+    C_PAR           reduce using rule 38 (expression -> expression LESS_EQUAL_THAN expression .)
+    THEN            reduce using rule 38 (expression -> expression LESS_EQUAL_THAN expression .)
+    LOOP            reduce using rule 38 (expression -> expression LESS_EQUAL_THAN expression .)
+    OF              reduce using rule 38 (expression -> expression LESS_EQUAL_THAN expression .)
+    C_KEY           reduce using rule 38 (expression -> expression LESS_EQUAL_THAN expression .)
+    COMMA           reduce using rule 38 (expression -> expression LESS_EQUAL_THAN expression .)
+    ELSE            reduce using rule 38 (expression -> expression LESS_EQUAL_THAN expression .)
+    POOL            reduce using rule 38 (expression -> expression LESS_EQUAL_THAN expression .)
+    FI              reduce using rule 38 (expression -> expression LESS_EQUAL_THAN expression .)
+    IN              reduce using rule 38 (expression -> expression LESS_EQUAL_THAN expression .)
+    POINT           shift and go to state 61
+    AT              shift and go to state 62
+    PLUS            shift and go to state 63
+    MINUS           shift and go to state 64
+    STAR            shift and go to state 65
+    DIV             shift and go to state 66
+
+  ! POINT           [ reduce using rule 38 (expression -> expression LESS_EQUAL_THAN expression .) ]
+  ! AT              [ reduce using rule 38 (expression -> expression LESS_EQUAL_THAN expression .) ]
+  ! PLUS            [ reduce using rule 38 (expression -> expression LESS_EQUAL_THAN expression .) ]
+  ! MINUS           [ reduce using rule 38 (expression -> expression LESS_EQUAL_THAN expression .) ]
+  ! STAR            [ reduce using rule 38 (expression -> expression LESS_EQUAL_THAN expression .) ]
+  ! DIV             [ reduce using rule 38 (expression -> expression LESS_EQUAL_THAN expression .) ]
+  ! LESS_THAN       [ shift and go to state 67 ]
+  ! LESS_EQUAL_THAN [ shift and go to state 68 ]
+  ! EQUAL           [ shift and go to state 69 ]
+
+
+state 97
+
+    (39) expression -> expression EQUAL expression .
+    (26) expression -> expression . POINT ID O_PAR arguments_list_opt C_PAR
+    (31) expression -> expression . AT TYPE_ID POINT ID O_PAR arguments_list_opt C_PAR
+    (33) expression -> expression . PLUS expression
+    (34) expression -> expression . MINUS expression
+    (35) expression -> expression . STAR expression
+    (36) expression -> expression . DIV expression
+    (37) expression -> expression . LESS_THAN expression
+    (38) expression -> expression . LESS_EQUAL_THAN expression
+    (39) expression -> expression . EQUAL expression
+
+    LESS_THAN       reduce using rule 39 (expression -> expression EQUAL expression .)
+    LESS_EQUAL_THAN reduce using rule 39 (expression -> expression EQUAL expression .)
+    EQUAL           reduce using rule 39 (expression -> expression EQUAL expression .)
+    POINT_AND_COMMA reduce using rule 39 (expression -> expression EQUAL expression .)
+    C_PAR           reduce using rule 39 (expression -> expression EQUAL expression .)
+    THEN            reduce using rule 39 (expression -> expression EQUAL expression .)
+    LOOP            reduce using rule 39 (expression -> expression EQUAL expression .)
+    OF              reduce using rule 39 (expression -> expression EQUAL expression .)
+    C_KEY           reduce using rule 39 (expression -> expression EQUAL expression .)
+    COMMA           reduce using rule 39 (expression -> expression EQUAL expression .)
+    ELSE            reduce using rule 39 (expression -> expression EQUAL expression .)
+    POOL            reduce using rule 39 (expression -> expression EQUAL expression .)
+    FI              reduce using rule 39 (expression -> expression EQUAL expression .)
+    IN              reduce using rule 39 (expression -> expression EQUAL expression .)
+    POINT           shift and go to state 61
+    AT              shift and go to state 62
+    PLUS            shift and go to state 63
+    MINUS           shift and go to state 64
+    STAR            shift and go to state 65
+    DIV             shift and go to state 66
+
+  ! POINT           [ reduce using rule 39 (expression -> expression EQUAL expression .) ]
+  ! AT              [ reduce using rule 39 (expression -> expression EQUAL expression .) ]
+  ! PLUS            [ reduce using rule 39 (expression -> expression EQUAL expression .) ]
+  ! MINUS           [ reduce using rule 39 (expression -> expression EQUAL expression .) ]
+  ! STAR            [ reduce using rule 39 (expression -> expression EQUAL expression .) ]
+  ! DIV             [ reduce using rule 39 (expression -> expression EQUAL expression .) ]
+  ! LESS_THAN       [ shift and go to state 67 ]
+  ! LESS_EQUAL_THAN [ shift and go to state 68 ]
+  ! EQUAL           [ shift and go to state 69 ]
+
+
+state 98
+
+    (22) expression -> O_KEY block_list C_KEY .
+
+    POINT           reduce using rule 22 (expression -> O_KEY block_list C_KEY .)
+    AT              reduce using rule 22 (expression -> O_KEY block_list C_KEY .)
+    PLUS            reduce using rule 22 (expression -> O_KEY block_list C_KEY .)
+    MINUS           reduce using rule 22 (expression -> O_KEY block_list C_KEY .)
+    STAR            reduce using rule 22 (expression -> O_KEY block_list C_KEY .)
+    DIV             reduce using rule 22 (expression -> O_KEY block_list C_KEY .)
+    LESS_THAN       reduce using rule 22 (expression -> O_KEY block_list C_KEY .)
+    LESS_EQUAL_THAN reduce using rule 22 (expression -> O_KEY block_list C_KEY .)
+    EQUAL           reduce using rule 22 (expression -> O_KEY block_list C_KEY .)
+    POINT_AND_COMMA reduce using rule 22 (expression -> O_KEY block_list C_KEY .)
+    C_PAR           reduce using rule 22 (expression -> O_KEY block_list C_KEY .)
+    THEN            reduce using rule 22 (expression -> O_KEY block_list C_KEY .)
+    LOOP            reduce using rule 22 (expression -> O_KEY block_list C_KEY .)
+    OF              reduce using rule 22 (expression -> O_KEY block_list C_KEY .)
+    C_KEY           reduce using rule 22 (expression -> O_KEY block_list C_KEY .)
+    COMMA           reduce using rule 22 (expression -> O_KEY block_list C_KEY .)
+    ELSE            reduce using rule 22 (expression -> O_KEY block_list C_KEY .)
+    POOL            reduce using rule 22 (expression -> O_KEY block_list C_KEY .)
+    FI              reduce using rule 22 (expression -> O_KEY block_list C_KEY .)
+    IN              reduce using rule 22 (expression -> O_KEY block_list C_KEY .)
+
+
+state 99
+
+    (23) block_list -> block_list expression . POINT_AND_COMMA
+    (26) expression -> expression . POINT ID O_PAR arguments_list_opt C_PAR
+    (31) expression -> expression . AT TYPE_ID POINT ID O_PAR arguments_list_opt C_PAR
+    (33) expression -> expression . PLUS expression
+    (34) expression -> expression . MINUS expression
+    (35) expression -> expression . STAR expression
+    (36) expression -> expression . DIV expression
+    (37) expression -> expression . LESS_THAN expression
+    (38) expression -> expression . LESS_EQUAL_THAN expression
+    (39) expression -> expression . EQUAL expression
+
+    POINT_AND_COMMA shift and go to state 114
+    POINT           shift and go to state 61
+    AT              shift and go to state 62
+    PLUS            shift and go to state 63
+    MINUS           shift and go to state 64
+    STAR            shift and go to state 65
+    DIV             shift and go to state 66
+    LESS_THAN       shift and go to state 67
+    LESS_EQUAL_THAN shift and go to state 68
+    EQUAL           shift and go to state 69
+
+
+state 100
+
+    (24) block_list -> expression POINT_AND_COMMA .
+
+    C_KEY           reduce using rule 24 (block_list -> expression POINT_AND_COMMA .)
+    ID              reduce using rule 24 (block_list -> expression POINT_AND_COMMA .)
+    INT             reduce using rule 24 (block_list -> expression POINT_AND_COMMA .)
+    BOOL            reduce using rule 24 (block_list -> expression POINT_AND_COMMA .)
+    STRING          reduce using rule 24 (block_list -> expression POINT_AND_COMMA .)
+    SELF            reduce using rule 24 (block_list -> expression POINT_AND_COMMA .)
+    O_KEY           reduce using rule 24 (block_list -> expression POINT_AND_COMMA .)
+    O_PAR           reduce using rule 24 (block_list -> expression POINT_AND_COMMA .)
+    IF              reduce using rule 24 (block_list -> expression POINT_AND_COMMA .)
+    WHILE           reduce using rule 24 (block_list -> expression POINT_AND_COMMA .)
+    CASE            reduce using rule 24 (block_list -> expression POINT_AND_COMMA .)
+    NEW             reduce using rule 24 (block_list -> expression POINT_AND_COMMA .)
+    ISVOID          reduce using rule 24 (block_list -> expression POINT_AND_COMMA .)
+    DESTRUCTOR      reduce using rule 24 (block_list -> expression POINT_AND_COMMA .)
+    NOT             reduce using rule 24 (block_list -> expression POINT_AND_COMMA .)
+    LET             reduce using rule 24 (block_list -> expression POINT_AND_COMMA .)
+
+
+state 101
+
+    (40) expression -> O_PAR expression C_PAR .
+
+    POINT           reduce using rule 40 (expression -> O_PAR expression C_PAR .)
+    AT              reduce using rule 40 (expression -> O_PAR expression C_PAR .)
+    PLUS            reduce using rule 40 (expression -> O_PAR expression C_PAR .)
+    MINUS           reduce using rule 40 (expression -> O_PAR expression C_PAR .)
+    STAR            reduce using rule 40 (expression -> O_PAR expression C_PAR .)
+    DIV             reduce using rule 40 (expression -> O_PAR expression C_PAR .)
+    LESS_THAN       reduce using rule 40 (expression -> O_PAR expression C_PAR .)
+    LESS_EQUAL_THAN reduce using rule 40 (expression -> O_PAR expression C_PAR .)
+    EQUAL           reduce using rule 40 (expression -> O_PAR expression C_PAR .)
+    POINT_AND_COMMA reduce using rule 40 (expression -> O_PAR expression C_PAR .)
+    C_PAR           reduce using rule 40 (expression -> O_PAR expression C_PAR .)
+    THEN            reduce using rule 40 (expression -> O_PAR expression C_PAR .)
+    LOOP            reduce using rule 40 (expression -> O_PAR expression C_PAR .)
+    OF              reduce using rule 40 (expression -> O_PAR expression C_PAR .)
+    C_KEY           reduce using rule 40 (expression -> O_PAR expression C_PAR .)
+    COMMA           reduce using rule 40 (expression -> O_PAR expression C_PAR .)
+    ELSE            reduce using rule 40 (expression -> O_PAR expression C_PAR .)
+    POOL            reduce using rule 40 (expression -> O_PAR expression C_PAR .)
+    FI              reduce using rule 40 (expression -> O_PAR expression C_PAR .)
+    IN              reduce using rule 40 (expression -> O_PAR expression C_PAR .)
+
+
+state 102
+
+    (41) expression -> IF expression THEN . expression ELSE expression FI
+    (17) expression -> . ID
+    (18) expression -> . INT
+    (19) expression -> . BOOL
+    (20) expression -> . STRING
+    (21) expression -> . SELF
+    (22) expression -> . O_KEY block_list C_KEY
+    (25) expression -> . ID ASSIGNAMENT expression
+    (26) expression -> . expression POINT ID O_PAR arguments_list_opt C_PAR
+    (31) expression -> . expression AT TYPE_ID POINT ID O_PAR arguments_list_opt C_PAR
+    (32) expression -> . ID O_PAR arguments_list_opt C_PAR
+    (33) expression -> . expression PLUS expression
+    (34) expression -> . expression MINUS expression
+    (35) expression -> . expression STAR expression
+    (36) expression -> . expression DIV expression
+    (37) expression -> . expression LESS_THAN expression
+    (38) expression -> . expression LESS_EQUAL_THAN expression
+    (39) expression -> . expression EQUAL expression
+    (40) expression -> . O_PAR expression C_PAR
+    (41) expression -> . IF expression THEN expression ELSE expression FI
+    (42) expression -> . WHILE expression LOOP expression POOL
+    (43) expression -> . CASE expression OF actions_list ESAC
+    (47) expression -> . NEW TYPE_ID
+    (48) expression -> . ISVOID expression
+    (49) expression -> . DESTRUCTOR expression
+    (50) expression -> . NOT expression
+    (51) expression -> . let_expression
+    (52) let_expression -> . LET generate_instances IN expression
+
+    ID              shift and go to state 40
+    INT             shift and go to state 42
+    BOOL            shift and go to state 43
+    STRING          shift and go to state 44
+    SELF            shift and go to state 45
+    O_KEY           shift and go to state 46
+    O_PAR           shift and go to state 47
+    IF              shift and go to state 48
+    WHILE           shift and go to state 49
+    CASE            shift and go to state 50
+    NEW             shift and go to state 51
+    ISVOID          shift and go to state 52
+    DESTRUCTOR      shift and go to state 53
+    NOT             shift and go to state 54
+    LET             shift and go to state 56
+
+    expression                     shift and go to state 115
+    let_expression                 shift and go to state 55
+
+state 103
+
+    (42) expression -> WHILE expression LOOP . expression POOL
+    (17) expression -> . ID
+    (18) expression -> . INT
+    (19) expression -> . BOOL
+    (20) expression -> . STRING
+    (21) expression -> . SELF
+    (22) expression -> . O_KEY block_list C_KEY
+    (25) expression -> . ID ASSIGNAMENT expression
+    (26) expression -> . expression POINT ID O_PAR arguments_list_opt C_PAR
+    (31) expression -> . expression AT TYPE_ID POINT ID O_PAR arguments_list_opt C_PAR
+    (32) expression -> . ID O_PAR arguments_list_opt C_PAR
+    (33) expression -> . expression PLUS expression
+    (34) expression -> . expression MINUS expression
+    (35) expression -> . expression STAR expression
+    (36) expression -> . expression DIV expression
+    (37) expression -> . expression LESS_THAN expression
+    (38) expression -> . expression LESS_EQUAL_THAN expression
+    (39) expression -> . expression EQUAL expression
+    (40) expression -> . O_PAR expression C_PAR
+    (41) expression -> . IF expression THEN expression ELSE expression FI
+    (42) expression -> . WHILE expression LOOP expression POOL
+    (43) expression -> . CASE expression OF actions_list ESAC
+    (47) expression -> . NEW TYPE_ID
+    (48) expression -> . ISVOID expression
+    (49) expression -> . DESTRUCTOR expression
+    (50) expression -> . NOT expression
+    (51) expression -> . let_expression
+    (52) let_expression -> . LET generate_instances IN expression
+
+    ID              shift and go to state 40
+    INT             shift and go to state 42
+    BOOL            shift and go to state 43
+    STRING          shift and go to state 44
+    SELF            shift and go to state 45
+    O_KEY           shift and go to state 46
+    O_PAR           shift and go to state 47
+    IF              shift and go to state 48
+    WHILE           shift and go to state 49
+    CASE            shift and go to state 50
+    NEW             shift and go to state 51
+    ISVOID          shift and go to state 52
+    DESTRUCTOR      shift and go to state 53
+    NOT             shift and go to state 54
+    LET             shift and go to state 56
+
+    expression                     shift and go to state 116
+    let_expression                 shift and go to state 55
+
+state 104
+
+    (43) expression -> CASE expression OF . actions_list ESAC
+    (44) actions_list -> . actions_list action
+    (45) actions_list -> . action
+    (46) action -> . ID TWO_POINTS TYPE_ID IMPLICATION expression POINT_AND_COMMA
+
+    ID              shift and go to state 119
+
+    actions_list                   shift and go to state 117
+    action                         shift and go to state 118
+
+state 105
+
+    (52) let_expression -> LET generate_instances IN . expression
+    (17) expression -> . ID
+    (18) expression -> . INT
+    (19) expression -> . BOOL
+    (20) expression -> . STRING
+    (21) expression -> . SELF
+    (22) expression -> . O_KEY block_list C_KEY
+    (25) expression -> . ID ASSIGNAMENT expression
+    (26) expression -> . expression POINT ID O_PAR arguments_list_opt C_PAR
+    (31) expression -> . expression AT TYPE_ID POINT ID O_PAR arguments_list_opt C_PAR
+    (32) expression -> . ID O_PAR arguments_list_opt C_PAR
+    (33) expression -> . expression PLUS expression
+    (34) expression -> . expression MINUS expression
+    (35) expression -> . expression STAR expression
+    (36) expression -> . expression DIV expression
+    (37) expression -> . expression LESS_THAN expression
+    (38) expression -> . expression LESS_EQUAL_THAN expression
+    (39) expression -> . expression EQUAL expression
+    (40) expression -> . O_PAR expression C_PAR
+    (41) expression -> . IF expression THEN expression ELSE expression FI
+    (42) expression -> . WHILE expression LOOP expression POOL
+    (43) expression -> . CASE expression OF actions_list ESAC
+    (47) expression -> . NEW TYPE_ID
+    (48) expression -> . ISVOID expression
+    (49) expression -> . DESTRUCTOR expression
+    (50) expression -> . NOT expression
+    (51) expression -> . let_expression
+    (52) let_expression -> . LET generate_instances IN expression
+
+    ID              shift and go to state 40
+    INT             shift and go to state 42
+    BOOL            shift and go to state 43
+    STRING          shift and go to state 44
+    SELF            shift and go to state 45
+    O_KEY           shift and go to state 46
+    O_PAR           shift and go to state 47
+    IF              shift and go to state 48
+    WHILE           shift and go to state 49
+    CASE            shift and go to state 50
+    NEW             shift and go to state 51
+    ISVOID          shift and go to state 52
+    DESTRUCTOR      shift and go to state 53
+    NOT             shift and go to state 54
+    LET             shift and go to state 56
+
+    expression                     shift and go to state 120
+    let_expression                 shift and go to state 55
+
+state 106
+
+    (55) generate_instances -> generate_instances COMMA . ID TWO_POINTS TYPE_ID
+    (56) generate_instances -> generate_instances COMMA . ID TWO_POINTS TYPE_ID ASSIGNAMENT expression
+
+    ID              shift and go to state 121
+
+
+state 107
+
+    (53) generate_instances -> ID TWO_POINTS . TYPE_ID
+    (54) generate_instances -> ID TWO_POINTS . TYPE_ID ASSIGNAMENT expression
+
+    TYPE_ID         shift and go to state 122
+
+
+state 108
+
+    (10) feature -> ID O_PAR formal_params_list C_PAR TWO_POINTS TYPE_ID O_KEY expression . C_KEY
+    (26) expression -> expression . POINT ID O_PAR arguments_list_opt C_PAR
+    (31) expression -> expression . AT TYPE_ID POINT ID O_PAR arguments_list_opt C_PAR
+    (33) expression -> expression . PLUS expression
+    (34) expression -> expression . MINUS expression
+    (35) expression -> expression . STAR expression
+    (36) expression -> expression . DIV expression
+    (37) expression -> expression . LESS_THAN expression
+    (38) expression -> expression . LESS_EQUAL_THAN expression
+    (39) expression -> expression . EQUAL expression
+
+    C_KEY           shift and go to state 123
+    POINT           shift and go to state 61
+    AT              shift and go to state 62
+    PLUS            shift and go to state 63
+    MINUS           shift and go to state 64
+    STAR            shift and go to state 65
+    DIV             shift and go to state 66
+    LESS_THAN       shift and go to state 67
+    LESS_EQUAL_THAN shift and go to state 68
+    EQUAL           shift and go to state 69
+
+
+state 109
+
+    (11) feature -> ID O_PAR C_PAR TWO_POINTS TYPE_ID O_KEY expression C_KEY .
+
+    POINT_AND_COMMA reduce using rule 11 (feature -> ID O_PAR C_PAR TWO_POINTS TYPE_ID O_KEY expression C_KEY .)
+
+
+state 110
+
+    (32) expression -> ID O_PAR arguments_list_opt C_PAR .
+
+    POINT           reduce using rule 32 (expression -> ID O_PAR arguments_list_opt C_PAR .)
+    AT              reduce using rule 32 (expression -> ID O_PAR arguments_list_opt C_PAR .)
+    PLUS            reduce using rule 32 (expression -> ID O_PAR arguments_list_opt C_PAR .)
+    MINUS           reduce using rule 32 (expression -> ID O_PAR arguments_list_opt C_PAR .)
+    STAR            reduce using rule 32 (expression -> ID O_PAR arguments_list_opt C_PAR .)
+    DIV             reduce using rule 32 (expression -> ID O_PAR arguments_list_opt C_PAR .)
+    LESS_THAN       reduce using rule 32 (expression -> ID O_PAR arguments_list_opt C_PAR .)
+    LESS_EQUAL_THAN reduce using rule 32 (expression -> ID O_PAR arguments_list_opt C_PAR .)
+    EQUAL           reduce using rule 32 (expression -> ID O_PAR arguments_list_opt C_PAR .)
+    POINT_AND_COMMA reduce using rule 32 (expression -> ID O_PAR arguments_list_opt C_PAR .)
+    C_PAR           reduce using rule 32 (expression -> ID O_PAR arguments_list_opt C_PAR .)
+    THEN            reduce using rule 32 (expression -> ID O_PAR arguments_list_opt C_PAR .)
+    LOOP            reduce using rule 32 (expression -> ID O_PAR arguments_list_opt C_PAR .)
+    OF              reduce using rule 32 (expression -> ID O_PAR arguments_list_opt C_PAR .)
+    C_KEY           reduce using rule 32 (expression -> ID O_PAR arguments_list_opt C_PAR .)
+    COMMA           reduce using rule 32 (expression -> ID O_PAR arguments_list_opt C_PAR .)
+    ELSE            reduce using rule 32 (expression -> ID O_PAR arguments_list_opt C_PAR .)
+    POOL            reduce using rule 32 (expression -> ID O_PAR arguments_list_opt C_PAR .)
+    FI              reduce using rule 32 (expression -> ID O_PAR arguments_list_opt C_PAR .)
+    IN              reduce using rule 32 (expression -> ID O_PAR arguments_list_opt C_PAR .)
+
+
+state 111
+
+    (29) arguments_list -> arguments_list COMMA . expression
+    (17) expression -> . ID
+    (18) expression -> . INT
+    (19) expression -> . BOOL
+    (20) expression -> . STRING
+    (21) expression -> . SELF
+    (22) expression -> . O_KEY block_list C_KEY
+    (25) expression -> . ID ASSIGNAMENT expression
+    (26) expression -> . expression POINT ID O_PAR arguments_list_opt C_PAR
+    (31) expression -> . expression AT TYPE_ID POINT ID O_PAR arguments_list_opt C_PAR
+    (32) expression -> . ID O_PAR arguments_list_opt C_PAR
+    (33) expression -> . expression PLUS expression
+    (34) expression -> . expression MINUS expression
+    (35) expression -> . expression STAR expression
+    (36) expression -> . expression DIV expression
+    (37) expression -> . expression LESS_THAN expression
+    (38) expression -> . expression LESS_EQUAL_THAN expression
+    (39) expression -> . expression EQUAL expression
+    (40) expression -> . O_PAR expression C_PAR
+    (41) expression -> . IF expression THEN expression ELSE expression FI
+    (42) expression -> . WHILE expression LOOP expression POOL
+    (43) expression -> . CASE expression OF actions_list ESAC
+    (47) expression -> . NEW TYPE_ID
+    (48) expression -> . ISVOID expression
+    (49) expression -> . DESTRUCTOR expression
+    (50) expression -> . NOT expression
+    (51) expression -> . let_expression
+    (52) let_expression -> . LET generate_instances IN expression
+
+    ID              shift and go to state 40
+    INT             shift and go to state 42
+    BOOL            shift and go to state 43
+    STRING          shift and go to state 44
+    SELF            shift and go to state 45
+    O_KEY           shift and go to state 46
+    O_PAR           shift and go to state 47
+    IF              shift and go to state 48
+    WHILE           shift and go to state 49
+    CASE            shift and go to state 50
+    NEW             shift and go to state 51
+    ISVOID          shift and go to state 52
+    DESTRUCTOR      shift and go to state 53
+    NOT             shift and go to state 54
+    LET             shift and go to state 56
+
+    expression                     shift and go to state 124
+    let_expression                 shift and go to state 55
+
+state 112
+
+    (26) expression -> expression POINT ID O_PAR . arguments_list_opt C_PAR
+    (27) arguments_list_opt -> . arguments_list
+    (28) arguments_list_opt -> . empty
+    (29) arguments_list -> . arguments_list COMMA expression
+    (30) arguments_list -> . expression
+    (57) empty -> .
+    (17) expression -> . ID
+    (18) expression -> . INT
+    (19) expression -> . BOOL
+    (20) expression -> . STRING
+    (21) expression -> . SELF
+    (22) expression -> . O_KEY block_list C_KEY
+    (25) expression -> . ID ASSIGNAMENT expression
+    (26) expression -> . expression POINT ID O_PAR arguments_list_opt C_PAR
+    (31) expression -> . expression AT TYPE_ID POINT ID O_PAR arguments_list_opt C_PAR
+    (32) expression -> . ID O_PAR arguments_list_opt C_PAR
+    (33) expression -> . expression PLUS expression
+    (34) expression -> . expression MINUS expression
+    (35) expression -> . expression STAR expression
+    (36) expression -> . expression DIV expression
+    (37) expression -> . expression LESS_THAN expression
+    (38) expression -> . expression LESS_EQUAL_THAN expression
+    (39) expression -> . expression EQUAL expression
+    (40) expression -> . O_PAR expression C_PAR
+    (41) expression -> . IF expression THEN expression ELSE expression FI
+    (42) expression -> . WHILE expression LOOP expression POOL
+    (43) expression -> . CASE expression OF actions_list ESAC
+    (47) expression -> . NEW TYPE_ID
+    (48) expression -> . ISVOID expression
+    (49) expression -> . DESTRUCTOR expression
+    (50) expression -> . NOT expression
+    (51) expression -> . let_expression
+    (52) let_expression -> . LET generate_instances IN expression
+
+    C_PAR           reduce using rule 57 (empty -> .)
+    ID              shift and go to state 40
+    INT             shift and go to state 42
+    BOOL            shift and go to state 43
+    STRING          shift and go to state 44
+    SELF            shift and go to state 45
+    O_KEY           shift and go to state 46
+    O_PAR           shift and go to state 47
+    IF              shift and go to state 48
+    WHILE           shift and go to state 49
+    CASE            shift and go to state 50
+    NEW             shift and go to state 51
+    ISVOID          shift and go to state 52
+    DESTRUCTOR      shift and go to state 53
+    NOT             shift and go to state 54
+    LET             shift and go to state 56
+
+    expression                     shift and go to state 88
+    arguments_list_opt             shift and go to state 125
+    arguments_list                 shift and go to state 86
+    empty                          shift and go to state 87
+    let_expression                 shift and go to state 55
+
+state 113
+
+    (31) expression -> expression AT TYPE_ID POINT . ID O_PAR arguments_list_opt C_PAR
+
+    ID              shift and go to state 126
+
+
+state 114
+
+    (23) block_list -> block_list expression POINT_AND_COMMA .
+
+    C_KEY           reduce using rule 23 (block_list -> block_list expression POINT_AND_COMMA .)
+    ID              reduce using rule 23 (block_list -> block_list expression POINT_AND_COMMA .)
+    INT             reduce using rule 23 (block_list -> block_list expression POINT_AND_COMMA .)
+    BOOL            reduce using rule 23 (block_list -> block_list expression POINT_AND_COMMA .)
+    STRING          reduce using rule 23 (block_list -> block_list expression POINT_AND_COMMA .)
+    SELF            reduce using rule 23 (block_list -> block_list expression POINT_AND_COMMA .)
+    O_KEY           reduce using rule 23 (block_list -> block_list expression POINT_AND_COMMA .)
+    O_PAR           reduce using rule 23 (block_list -> block_list expression POINT_AND_COMMA .)
+    IF              reduce using rule 23 (block_list -> block_list expression POINT_AND_COMMA .)
+    WHILE           reduce using rule 23 (block_list -> block_list expression POINT_AND_COMMA .)
+    CASE            reduce using rule 23 (block_list -> block_list expression POINT_AND_COMMA .)
+    NEW             reduce using rule 23 (block_list -> block_list expression POINT_AND_COMMA .)
+    ISVOID          reduce using rule 23 (block_list -> block_list expression POINT_AND_COMMA .)
+    DESTRUCTOR      reduce using rule 23 (block_list -> block_list expression POINT_AND_COMMA .)
+    NOT             reduce using rule 23 (block_list -> block_list expression POINT_AND_COMMA .)
+    LET             reduce using rule 23 (block_list -> block_list expression POINT_AND_COMMA .)
+
+
+state 115
+
+    (41) expression -> IF expression THEN expression . ELSE expression FI
+    (26) expression -> expression . POINT ID O_PAR arguments_list_opt C_PAR
+    (31) expression -> expression . AT TYPE_ID POINT ID O_PAR arguments_list_opt C_PAR
+    (33) expression -> expression . PLUS expression
+    (34) expression -> expression . MINUS expression
+    (35) expression -> expression . STAR expression
+    (36) expression -> expression . DIV expression
+    (37) expression -> expression . LESS_THAN expression
+    (38) expression -> expression . LESS_EQUAL_THAN expression
+    (39) expression -> expression . EQUAL expression
+
+    ELSE            shift and go to state 127
+    POINT           shift and go to state 61
+    AT              shift and go to state 62
+    PLUS            shift and go to state 63
+    MINUS           shift and go to state 64
+    STAR            shift and go to state 65
+    DIV             shift and go to state 66
+    LESS_THAN       shift and go to state 67
+    LESS_EQUAL_THAN shift and go to state 68
+    EQUAL           shift and go to state 69
+
+
+state 116
+
+    (42) expression -> WHILE expression LOOP expression . POOL
+    (26) expression -> expression . POINT ID O_PAR arguments_list_opt C_PAR
+    (31) expression -> expression . AT TYPE_ID POINT ID O_PAR arguments_list_opt C_PAR
+    (33) expression -> expression . PLUS expression
+    (34) expression -> expression . MINUS expression
+    (35) expression -> expression . STAR expression
+    (36) expression -> expression . DIV expression
+    (37) expression -> expression . LESS_THAN expression
+    (38) expression -> expression . LESS_EQUAL_THAN expression
+    (39) expression -> expression . EQUAL expression
+
+    POOL            shift and go to state 128
+    POINT           shift and go to state 61
+    AT              shift and go to state 62
+    PLUS            shift and go to state 63
+    MINUS           shift and go to state 64
+    STAR            shift and go to state 65
+    DIV             shift and go to state 66
+    LESS_THAN       shift and go to state 67
+    LESS_EQUAL_THAN shift and go to state 68
+    EQUAL           shift and go to state 69
+
+
+state 117
+
+    (43) expression -> CASE expression OF actions_list . ESAC
+    (44) actions_list -> actions_list . action
+    (46) action -> . ID TWO_POINTS TYPE_ID IMPLICATION expression POINT_AND_COMMA
+
+    ESAC            shift and go to state 129
+    ID              shift and go to state 119
+
+    action                         shift and go to state 130
+
+state 118
+
+    (45) actions_list -> action .
+
+    ESAC            reduce using rule 45 (actions_list -> action .)
+    ID              reduce using rule 45 (actions_list -> action .)
+
+
+state 119
+
+    (46) action -> ID . TWO_POINTS TYPE_ID IMPLICATION expression POINT_AND_COMMA
+
+    TWO_POINTS      shift and go to state 131
+
+
+state 120
+
+    (52) let_expression -> LET generate_instances IN expression .
+    (26) expression -> expression . POINT ID O_PAR arguments_list_opt C_PAR
+    (31) expression -> expression . AT TYPE_ID POINT ID O_PAR arguments_list_opt C_PAR
+    (33) expression -> expression . PLUS expression
+    (34) expression -> expression . MINUS expression
+    (35) expression -> expression . STAR expression
+    (36) expression -> expression . DIV expression
+    (37) expression -> expression . LESS_THAN expression
+    (38) expression -> expression . LESS_EQUAL_THAN expression
+    (39) expression -> expression . EQUAL expression
+
+  ! shift/reduce conflict for POINT resolved as shift
+  ! shift/reduce conflict for AT resolved as shift
+  ! shift/reduce conflict for PLUS resolved as shift
+  ! shift/reduce conflict for MINUS resolved as shift
+  ! shift/reduce conflict for STAR resolved as shift
+  ! shift/reduce conflict for DIV resolved as shift
+  ! shift/reduce conflict for LESS_THAN resolved as shift
+  ! shift/reduce conflict for LESS_EQUAL_THAN resolved as shift
+  ! shift/reduce conflict for EQUAL resolved as shift
+    POINT_AND_COMMA reduce using rule 52 (let_expression -> LET generate_instances IN expression .)
+    C_PAR           reduce using rule 52 (let_expression -> LET generate_instances IN expression .)
+    THEN            reduce using rule 52 (let_expression -> LET generate_instances IN expression .)
+    LOOP            reduce using rule 52 (let_expression -> LET generate_instances IN expression .)
+    OF              reduce using rule 52 (let_expression -> LET generate_instances IN expression .)
+    C_KEY           reduce using rule 52 (let_expression -> LET generate_instances IN expression .)
+    COMMA           reduce using rule 52 (let_expression -> LET generate_instances IN expression .)
+    ELSE            reduce using rule 52 (let_expression -> LET generate_instances IN expression .)
+    POOL            reduce using rule 52 (let_expression -> LET generate_instances IN expression .)
+    FI              reduce using rule 52 (let_expression -> LET generate_instances IN expression .)
+    IN              reduce using rule 52 (let_expression -> LET generate_instances IN expression .)
+    POINT           shift and go to state 61
+    AT              shift and go to state 62
+    PLUS            shift and go to state 63
+    MINUS           shift and go to state 64
+    STAR            shift and go to state 65
+    DIV             shift and go to state 66
+    LESS_THAN       shift and go to state 67
+    LESS_EQUAL_THAN shift and go to state 68
+    EQUAL           shift and go to state 69
+
+  ! POINT           [ reduce using rule 52 (let_expression -> LET generate_instances IN expression .) ]
+  ! AT              [ reduce using rule 52 (let_expression -> LET generate_instances IN expression .) ]
+  ! PLUS            [ reduce using rule 52 (let_expression -> LET generate_instances IN expression .) ]
+  ! MINUS           [ reduce using rule 52 (let_expression -> LET generate_instances IN expression .) ]
+  ! STAR            [ reduce using rule 52 (let_expression -> LET generate_instances IN expression .) ]
+  ! DIV             [ reduce using rule 52 (let_expression -> LET generate_instances IN expression .) ]
+  ! LESS_THAN       [ reduce using rule 52 (let_expression -> LET generate_instances IN expression .) ]
+  ! LESS_EQUAL_THAN [ reduce using rule 52 (let_expression -> LET generate_instances IN expression .) ]
+  ! EQUAL           [ reduce using rule 52 (let_expression -> LET generate_instances IN expression .) ]
+
+
+state 121
+
+    (55) generate_instances -> generate_instances COMMA ID . TWO_POINTS TYPE_ID
+    (56) generate_instances -> generate_instances COMMA ID . TWO_POINTS TYPE_ID ASSIGNAMENT expression
+
+    TWO_POINTS      shift and go to state 132
+
+
+state 122
+
+    (53) generate_instances -> ID TWO_POINTS TYPE_ID .
+    (54) generate_instances -> ID TWO_POINTS TYPE_ID . ASSIGNAMENT expression
+
+    IN              reduce using rule 53 (generate_instances -> ID TWO_POINTS TYPE_ID .)
+    COMMA           reduce using rule 53 (generate_instances -> ID TWO_POINTS TYPE_ID .)
+    ASSIGNAMENT     shift and go to state 133
+
+
+state 123
+
+    (10) feature -> ID O_PAR formal_params_list C_PAR TWO_POINTS TYPE_ID O_KEY expression C_KEY .
+
+    POINT_AND_COMMA reduce using rule 10 (feature -> ID O_PAR formal_params_list C_PAR TWO_POINTS TYPE_ID O_KEY expression C_KEY .)
+
+
+state 124
+
+    (29) arguments_list -> arguments_list COMMA expression .
+    (26) expression -> expression . POINT ID O_PAR arguments_list_opt C_PAR
+    (31) expression -> expression . AT TYPE_ID POINT ID O_PAR arguments_list_opt C_PAR
+    (33) expression -> expression . PLUS expression
+    (34) expression -> expression . MINUS expression
+    (35) expression -> expression . STAR expression
+    (36) expression -> expression . DIV expression
+    (37) expression -> expression . LESS_THAN expression
+    (38) expression -> expression . LESS_EQUAL_THAN expression
+    (39) expression -> expression . EQUAL expression
+
+    COMMA           reduce using rule 29 (arguments_list -> arguments_list COMMA expression .)
+    C_PAR           reduce using rule 29 (arguments_list -> arguments_list COMMA expression .)
+    POINT           shift and go to state 61
+    AT              shift and go to state 62
+    PLUS            shift and go to state 63
+    MINUS           shift and go to state 64
+    STAR            shift and go to state 65
+    DIV             shift and go to state 66
+    LESS_THAN       shift and go to state 67
+    LESS_EQUAL_THAN shift and go to state 68
+    EQUAL           shift and go to state 69
+
+
+state 125
+
+    (26) expression -> expression POINT ID O_PAR arguments_list_opt . C_PAR
+
+    C_PAR           shift and go to state 134
+
+
+state 126
+
+    (31) expression -> expression AT TYPE_ID POINT ID . O_PAR arguments_list_opt C_PAR
+
+    O_PAR           shift and go to state 135
+
+
+state 127
+
+    (41) expression -> IF expression THEN expression ELSE . expression FI
+    (17) expression -> . ID
+    (18) expression -> . INT
+    (19) expression -> . BOOL
+    (20) expression -> . STRING
+    (21) expression -> . SELF
+    (22) expression -> . O_KEY block_list C_KEY
+    (25) expression -> . ID ASSIGNAMENT expression
+    (26) expression -> . expression POINT ID O_PAR arguments_list_opt C_PAR
+    (31) expression -> . expression AT TYPE_ID POINT ID O_PAR arguments_list_opt C_PAR
+    (32) expression -> . ID O_PAR arguments_list_opt C_PAR
+    (33) expression -> . expression PLUS expression
+    (34) expression -> . expression MINUS expression
+    (35) expression -> . expression STAR expression
+    (36) expression -> . expression DIV expression
+    (37) expression -> . expression LESS_THAN expression
+    (38) expression -> . expression LESS_EQUAL_THAN expression
+    (39) expression -> . expression EQUAL expression
+    (40) expression -> . O_PAR expression C_PAR
+    (41) expression -> . IF expression THEN expression ELSE expression FI
+    (42) expression -> . WHILE expression LOOP expression POOL
+    (43) expression -> . CASE expression OF actions_list ESAC
+    (47) expression -> . NEW TYPE_ID
+    (48) expression -> . ISVOID expression
+    (49) expression -> . DESTRUCTOR expression
+    (50) expression -> . NOT expression
+    (51) expression -> . let_expression
+    (52) let_expression -> . LET generate_instances IN expression
+
+    ID              shift and go to state 40
+    INT             shift and go to state 42
+    BOOL            shift and go to state 43
+    STRING          shift and go to state 44
+    SELF            shift and go to state 45
+    O_KEY           shift and go to state 46
+    O_PAR           shift and go to state 47
+    IF              shift and go to state 48
+    WHILE           shift and go to state 49
+    CASE            shift and go to state 50
+    NEW             shift and go to state 51
+    ISVOID          shift and go to state 52
+    DESTRUCTOR      shift and go to state 53
+    NOT             shift and go to state 54
+    LET             shift and go to state 56
+
+    expression                     shift and go to state 136
+    let_expression                 shift and go to state 55
+
+state 128
+
+    (42) expression -> WHILE expression LOOP expression POOL .
+
+    POINT           reduce using rule 42 (expression -> WHILE expression LOOP expression POOL .)
+    AT              reduce using rule 42 (expression -> WHILE expression LOOP expression POOL .)
+    PLUS            reduce using rule 42 (expression -> WHILE expression LOOP expression POOL .)
+    MINUS           reduce using rule 42 (expression -> WHILE expression LOOP expression POOL .)
+    STAR            reduce using rule 42 (expression -> WHILE expression LOOP expression POOL .)
+    DIV             reduce using rule 42 (expression -> WHILE expression LOOP expression POOL .)
+    LESS_THAN       reduce using rule 42 (expression -> WHILE expression LOOP expression POOL .)
+    LESS_EQUAL_THAN reduce using rule 42 (expression -> WHILE expression LOOP expression POOL .)
+    EQUAL           reduce using rule 42 (expression -> WHILE expression LOOP expression POOL .)
+    POINT_AND_COMMA reduce using rule 42 (expression -> WHILE expression LOOP expression POOL .)
+    C_PAR           reduce using rule 42 (expression -> WHILE expression LOOP expression POOL .)
+    THEN            reduce using rule 42 (expression -> WHILE expression LOOP expression POOL .)
+    LOOP            reduce using rule 42 (expression -> WHILE expression LOOP expression POOL .)
+    OF              reduce using rule 42 (expression -> WHILE expression LOOP expression POOL .)
+    C_KEY           reduce using rule 42 (expression -> WHILE expression LOOP expression POOL .)
+    COMMA           reduce using rule 42 (expression -> WHILE expression LOOP expression POOL .)
+    ELSE            reduce using rule 42 (expression -> WHILE expression LOOP expression POOL .)
+    POOL            reduce using rule 42 (expression -> WHILE expression LOOP expression POOL .)
+    FI              reduce using rule 42 (expression -> WHILE expression LOOP expression POOL .)
+    IN              reduce using rule 42 (expression -> WHILE expression LOOP expression POOL .)
+
+
+state 129
+
+    (43) expression -> CASE expression OF actions_list ESAC .
+
+    POINT           reduce using rule 43 (expression -> CASE expression OF actions_list ESAC .)
+    AT              reduce using rule 43 (expression -> CASE expression OF actions_list ESAC .)
+    PLUS            reduce using rule 43 (expression -> CASE expression OF actions_list ESAC .)
+    MINUS           reduce using rule 43 (expression -> CASE expression OF actions_list ESAC .)
+    STAR            reduce using rule 43 (expression -> CASE expression OF actions_list ESAC .)
+    DIV             reduce using rule 43 (expression -> CASE expression OF actions_list ESAC .)
+    LESS_THAN       reduce using rule 43 (expression -> CASE expression OF actions_list ESAC .)
+    LESS_EQUAL_THAN reduce using rule 43 (expression -> CASE expression OF actions_list ESAC .)
+    EQUAL           reduce using rule 43 (expression -> CASE expression OF actions_list ESAC .)
+    POINT_AND_COMMA reduce using rule 43 (expression -> CASE expression OF actions_list ESAC .)
+    C_PAR           reduce using rule 43 (expression -> CASE expression OF actions_list ESAC .)
+    THEN            reduce using rule 43 (expression -> CASE expression OF actions_list ESAC .)
+    LOOP            reduce using rule 43 (expression -> CASE expression OF actions_list ESAC .)
+    OF              reduce using rule 43 (expression -> CASE expression OF actions_list ESAC .)
+    C_KEY           reduce using rule 43 (expression -> CASE expression OF actions_list ESAC .)
+    COMMA           reduce using rule 43 (expression -> CASE expression OF actions_list ESAC .)
+    ELSE            reduce using rule 43 (expression -> CASE expression OF actions_list ESAC .)
+    POOL            reduce using rule 43 (expression -> CASE expression OF actions_list ESAC .)
+    FI              reduce using rule 43 (expression -> CASE expression OF actions_list ESAC .)
+    IN              reduce using rule 43 (expression -> CASE expression OF actions_list ESAC .)
+
+
+state 130
+
+    (44) actions_list -> actions_list action .
+
+    ESAC            reduce using rule 44 (actions_list -> actions_list action .)
+    ID              reduce using rule 44 (actions_list -> actions_list action .)
+
+
+state 131
+
+    (46) action -> ID TWO_POINTS . TYPE_ID IMPLICATION expression POINT_AND_COMMA
+
+    TYPE_ID         shift and go to state 137
+
+
+state 132
+
+    (55) generate_instances -> generate_instances COMMA ID TWO_POINTS . TYPE_ID
+    (56) generate_instances -> generate_instances COMMA ID TWO_POINTS . TYPE_ID ASSIGNAMENT expression
+
+    TYPE_ID         shift and go to state 138
+
+
+state 133
+
+    (54) generate_instances -> ID TWO_POINTS TYPE_ID ASSIGNAMENT . expression
+    (17) expression -> . ID
+    (18) expression -> . INT
+    (19) expression -> . BOOL
+    (20) expression -> . STRING
+    (21) expression -> . SELF
+    (22) expression -> . O_KEY block_list C_KEY
+    (25) expression -> . ID ASSIGNAMENT expression
+    (26) expression -> . expression POINT ID O_PAR arguments_list_opt C_PAR
+    (31) expression -> . expression AT TYPE_ID POINT ID O_PAR arguments_list_opt C_PAR
+    (32) expression -> . ID O_PAR arguments_list_opt C_PAR
+    (33) expression -> . expression PLUS expression
+    (34) expression -> . expression MINUS expression
+    (35) expression -> . expression STAR expression
+    (36) expression -> . expression DIV expression
+    (37) expression -> . expression LESS_THAN expression
+    (38) expression -> . expression LESS_EQUAL_THAN expression
+    (39) expression -> . expression EQUAL expression
+    (40) expression -> . O_PAR expression C_PAR
+    (41) expression -> . IF expression THEN expression ELSE expression FI
+    (42) expression -> . WHILE expression LOOP expression POOL
+    (43) expression -> . CASE expression OF actions_list ESAC
+    (47) expression -> . NEW TYPE_ID
+    (48) expression -> . ISVOID expression
+    (49) expression -> . DESTRUCTOR expression
+    (50) expression -> . NOT expression
+    (51) expression -> . let_expression
+    (52) let_expression -> . LET generate_instances IN expression
+
+    ID              shift and go to state 40
+    INT             shift and go to state 42
+    BOOL            shift and go to state 43
+    STRING          shift and go to state 44
+    SELF            shift and go to state 45
+    O_KEY           shift and go to state 46
+    O_PAR           shift and go to state 47
+    IF              shift and go to state 48
+    WHILE           shift and go to state 49
+    CASE            shift and go to state 50
+    NEW             shift and go to state 51
+    ISVOID          shift and go to state 52
+    DESTRUCTOR      shift and go to state 53
+    NOT             shift and go to state 54
+    LET             shift and go to state 56
+
+    expression                     shift and go to state 139
+    let_expression                 shift and go to state 55
+
+state 134
+
+    (26) expression -> expression POINT ID O_PAR arguments_list_opt C_PAR .
+
+    POINT           reduce using rule 26 (expression -> expression POINT ID O_PAR arguments_list_opt C_PAR .)
+    AT              reduce using rule 26 (expression -> expression POINT ID O_PAR arguments_list_opt C_PAR .)
+    PLUS            reduce using rule 26 (expression -> expression POINT ID O_PAR arguments_list_opt C_PAR .)
+    MINUS           reduce using rule 26 (expression -> expression POINT ID O_PAR arguments_list_opt C_PAR .)
+    STAR            reduce using rule 26 (expression -> expression POINT ID O_PAR arguments_list_opt C_PAR .)
+    DIV             reduce using rule 26 (expression -> expression POINT ID O_PAR arguments_list_opt C_PAR .)
+    LESS_THAN       reduce using rule 26 (expression -> expression POINT ID O_PAR arguments_list_opt C_PAR .)
+    LESS_EQUAL_THAN reduce using rule 26 (expression -> expression POINT ID O_PAR arguments_list_opt C_PAR .)
+    EQUAL           reduce using rule 26 (expression -> expression POINT ID O_PAR arguments_list_opt C_PAR .)
+    POINT_AND_COMMA reduce using rule 26 (expression -> expression POINT ID O_PAR arguments_list_opt C_PAR .)
+    C_PAR           reduce using rule 26 (expression -> expression POINT ID O_PAR arguments_list_opt C_PAR .)
+    THEN            reduce using rule 26 (expression -> expression POINT ID O_PAR arguments_list_opt C_PAR .)
+    LOOP            reduce using rule 26 (expression -> expression POINT ID O_PAR arguments_list_opt C_PAR .)
+    OF              reduce using rule 26 (expression -> expression POINT ID O_PAR arguments_list_opt C_PAR .)
+    C_KEY           reduce using rule 26 (expression -> expression POINT ID O_PAR arguments_list_opt C_PAR .)
+    COMMA           reduce using rule 26 (expression -> expression POINT ID O_PAR arguments_list_opt C_PAR .)
+    ELSE            reduce using rule 26 (expression -> expression POINT ID O_PAR arguments_list_opt C_PAR .)
+    POOL            reduce using rule 26 (expression -> expression POINT ID O_PAR arguments_list_opt C_PAR .)
+    FI              reduce using rule 26 (expression -> expression POINT ID O_PAR arguments_list_opt C_PAR .)
+    IN              reduce using rule 26 (expression -> expression POINT ID O_PAR arguments_list_opt C_PAR .)
+
+
+state 135
+
+    (31) expression -> expression AT TYPE_ID POINT ID O_PAR . arguments_list_opt C_PAR
+    (27) arguments_list_opt -> . arguments_list
+    (28) arguments_list_opt -> . empty
+    (29) arguments_list -> . arguments_list COMMA expression
+    (30) arguments_list -> . expression
+    (57) empty -> .
+    (17) expression -> . ID
+    (18) expression -> . INT
+    (19) expression -> . BOOL
+    (20) expression -> . STRING
+    (21) expression -> . SELF
+    (22) expression -> . O_KEY block_list C_KEY
+    (25) expression -> . ID ASSIGNAMENT expression
+    (26) expression -> . expression POINT ID O_PAR arguments_list_opt C_PAR
+    (31) expression -> . expression AT TYPE_ID POINT ID O_PAR arguments_list_opt C_PAR
+    (32) expression -> . ID O_PAR arguments_list_opt C_PAR
+    (33) expression -> . expression PLUS expression
+    (34) expression -> . expression MINUS expression
+    (35) expression -> . expression STAR expression
+    (36) expression -> . expression DIV expression
+    (37) expression -> . expression LESS_THAN expression
+    (38) expression -> . expression LESS_EQUAL_THAN expression
+    (39) expression -> . expression EQUAL expression
+    (40) expression -> . O_PAR expression C_PAR
+    (41) expression -> . IF expression THEN expression ELSE expression FI
+    (42) expression -> . WHILE expression LOOP expression POOL
+    (43) expression -> . CASE expression OF actions_list ESAC
+    (47) expression -> . NEW TYPE_ID
+    (48) expression -> . ISVOID expression
+    (49) expression -> . DESTRUCTOR expression
+    (50) expression -> . NOT expression
+    (51) expression -> . let_expression
+    (52) let_expression -> . LET generate_instances IN expression
+
+    C_PAR           reduce using rule 57 (empty -> .)
+    ID              shift and go to state 40
+    INT             shift and go to state 42
+    BOOL            shift and go to state 43
+    STRING          shift and go to state 44
+    SELF            shift and go to state 45
+    O_KEY           shift and go to state 46
+    O_PAR           shift and go to state 47
+    IF              shift and go to state 48
+    WHILE           shift and go to state 49
+    CASE            shift and go to state 50
+    NEW             shift and go to state 51
+    ISVOID          shift and go to state 52
+    DESTRUCTOR      shift and go to state 53
+    NOT             shift and go to state 54
+    LET             shift and go to state 56
+
+    expression                     shift and go to state 88
+    arguments_list_opt             shift and go to state 140
+    arguments_list                 shift and go to state 86
+    empty                          shift and go to state 87
+    let_expression                 shift and go to state 55
+
+state 136
+
+    (41) expression -> IF expression THEN expression ELSE expression . FI
+    (26) expression -> expression . POINT ID O_PAR arguments_list_opt C_PAR
+    (31) expression -> expression . AT TYPE_ID POINT ID O_PAR arguments_list_opt C_PAR
+    (33) expression -> expression . PLUS expression
+    (34) expression -> expression . MINUS expression
+    (35) expression -> expression . STAR expression
+    (36) expression -> expression . DIV expression
+    (37) expression -> expression . LESS_THAN expression
+    (38) expression -> expression . LESS_EQUAL_THAN expression
+    (39) expression -> expression . EQUAL expression
+
+    FI              shift and go to state 141
+    POINT           shift and go to state 61
+    AT              shift and go to state 62
+    PLUS            shift and go to state 63
+    MINUS           shift and go to state 64
+    STAR            shift and go to state 65
+    DIV             shift and go to state 66
+    LESS_THAN       shift and go to state 67
+    LESS_EQUAL_THAN shift and go to state 68
+    EQUAL           shift and go to state 69
+
+
+state 137
+
+    (46) action -> ID TWO_POINTS TYPE_ID . IMPLICATION expression POINT_AND_COMMA
+
+    IMPLICATION     shift and go to state 142
+
+
+state 138
+
+    (55) generate_instances -> generate_instances COMMA ID TWO_POINTS TYPE_ID .
+    (56) generate_instances -> generate_instances COMMA ID TWO_POINTS TYPE_ID . ASSIGNAMENT expression
+
+    IN              reduce using rule 55 (generate_instances -> generate_instances COMMA ID TWO_POINTS TYPE_ID .)
+    COMMA           reduce using rule 55 (generate_instances -> generate_instances COMMA ID TWO_POINTS TYPE_ID .)
+    ASSIGNAMENT     shift and go to state 143
+
+
+state 139
+
+    (54) generate_instances -> ID TWO_POINTS TYPE_ID ASSIGNAMENT expression .
+    (26) expression -> expression . POINT ID O_PAR arguments_list_opt C_PAR
+    (31) expression -> expression . AT TYPE_ID POINT ID O_PAR arguments_list_opt C_PAR
+    (33) expression -> expression . PLUS expression
+    (34) expression -> expression . MINUS expression
+    (35) expression -> expression . STAR expression
+    (36) expression -> expression . DIV expression
+    (37) expression -> expression . LESS_THAN expression
+    (38) expression -> expression . LESS_EQUAL_THAN expression
+    (39) expression -> expression . EQUAL expression
+
+    IN              reduce using rule 54 (generate_instances -> ID TWO_POINTS TYPE_ID ASSIGNAMENT expression .)
+    COMMA           reduce using rule 54 (generate_instances -> ID TWO_POINTS TYPE_ID ASSIGNAMENT expression .)
+    POINT           shift and go to state 61
+    AT              shift and go to state 62
+    PLUS            shift and go to state 63
+    MINUS           shift and go to state 64
+    STAR            shift and go to state 65
+    DIV             shift and go to state 66
+    LESS_THAN       shift and go to state 67
+    LESS_EQUAL_THAN shift and go to state 68
+    EQUAL           shift and go to state 69
+
+
+state 140
+
+    (31) expression -> expression AT TYPE_ID POINT ID O_PAR arguments_list_opt . C_PAR
+
+    C_PAR           shift and go to state 144
+
+
+state 141
+
+    (41) expression -> IF expression THEN expression ELSE expression FI .
+
+    POINT           reduce using rule 41 (expression -> IF expression THEN expression ELSE expression FI .)
+    AT              reduce using rule 41 (expression -> IF expression THEN expression ELSE expression FI .)
+    PLUS            reduce using rule 41 (expression -> IF expression THEN expression ELSE expression FI .)
+    MINUS           reduce using rule 41 (expression -> IF expression THEN expression ELSE expression FI .)
+    STAR            reduce using rule 41 (expression -> IF expression THEN expression ELSE expression FI .)
+    DIV             reduce using rule 41 (expression -> IF expression THEN expression ELSE expression FI .)
+    LESS_THAN       reduce using rule 41 (expression -> IF expression THEN expression ELSE expression FI .)
+    LESS_EQUAL_THAN reduce using rule 41 (expression -> IF expression THEN expression ELSE expression FI .)
+    EQUAL           reduce using rule 41 (expression -> IF expression THEN expression ELSE expression FI .)
+    POINT_AND_COMMA reduce using rule 41 (expression -> IF expression THEN expression ELSE expression FI .)
+    C_PAR           reduce using rule 41 (expression -> IF expression THEN expression ELSE expression FI .)
+    THEN            reduce using rule 41 (expression -> IF expression THEN expression ELSE expression FI .)
+    LOOP            reduce using rule 41 (expression -> IF expression THEN expression ELSE expression FI .)
+    OF              reduce using rule 41 (expression -> IF expression THEN expression ELSE expression FI .)
+    C_KEY           reduce using rule 41 (expression -> IF expression THEN expression ELSE expression FI .)
+    COMMA           reduce using rule 41 (expression -> IF expression THEN expression ELSE expression FI .)
+    ELSE            reduce using rule 41 (expression -> IF expression THEN expression ELSE expression FI .)
+    POOL            reduce using rule 41 (expression -> IF expression THEN expression ELSE expression FI .)
+    FI              reduce using rule 41 (expression -> IF expression THEN expression ELSE expression FI .)
+    IN              reduce using rule 41 (expression -> IF expression THEN expression ELSE expression FI .)
+
+
+state 142
+
+    (46) action -> ID TWO_POINTS TYPE_ID IMPLICATION . expression POINT_AND_COMMA
+    (17) expression -> . ID
+    (18) expression -> . INT
+    (19) expression -> . BOOL
+    (20) expression -> . STRING
+    (21) expression -> . SELF
+    (22) expression -> . O_KEY block_list C_KEY
+    (25) expression -> . ID ASSIGNAMENT expression
+    (26) expression -> . expression POINT ID O_PAR arguments_list_opt C_PAR
+    (31) expression -> . expression AT TYPE_ID POINT ID O_PAR arguments_list_opt C_PAR
+    (32) expression -> . ID O_PAR arguments_list_opt C_PAR
+    (33) expression -> . expression PLUS expression
+    (34) expression -> . expression MINUS expression
+    (35) expression -> . expression STAR expression
+    (36) expression -> . expression DIV expression
+    (37) expression -> . expression LESS_THAN expression
+    (38) expression -> . expression LESS_EQUAL_THAN expression
+    (39) expression -> . expression EQUAL expression
+    (40) expression -> . O_PAR expression C_PAR
+    (41) expression -> . IF expression THEN expression ELSE expression FI
+    (42) expression -> . WHILE expression LOOP expression POOL
+    (43) expression -> . CASE expression OF actions_list ESAC
+    (47) expression -> . NEW TYPE_ID
+    (48) expression -> . ISVOID expression
+    (49) expression -> . DESTRUCTOR expression
+    (50) expression -> . NOT expression
+    (51) expression -> . let_expression
+    (52) let_expression -> . LET generate_instances IN expression
+
+    ID              shift and go to state 40
+    INT             shift and go to state 42
+    BOOL            shift and go to state 43
+    STRING          shift and go to state 44
+    SELF            shift and go to state 45
+    O_KEY           shift and go to state 46
+    O_PAR           shift and go to state 47
+    IF              shift and go to state 48
+    WHILE           shift and go to state 49
+    CASE            shift and go to state 50
+    NEW             shift and go to state 51
+    ISVOID          shift and go to state 52
+    DESTRUCTOR      shift and go to state 53
+    NOT             shift and go to state 54
+    LET             shift and go to state 56
+
+    expression                     shift and go to state 145
+    let_expression                 shift and go to state 55
+
+state 143
+
+    (56) generate_instances -> generate_instances COMMA ID TWO_POINTS TYPE_ID ASSIGNAMENT . expression
+    (17) expression -> . ID
+    (18) expression -> . INT
+    (19) expression -> . BOOL
+    (20) expression -> . STRING
+    (21) expression -> . SELF
+    (22) expression -> . O_KEY block_list C_KEY
+    (25) expression -> . ID ASSIGNAMENT expression
+    (26) expression -> . expression POINT ID O_PAR arguments_list_opt C_PAR
+    (31) expression -> . expression AT TYPE_ID POINT ID O_PAR arguments_list_opt C_PAR
+    (32) expression -> . ID O_PAR arguments_list_opt C_PAR
+    (33) expression -> . expression PLUS expression
+    (34) expression -> . expression MINUS expression
+    (35) expression -> . expression STAR expression
+    (36) expression -> . expression DIV expression
+    (37) expression -> . expression LESS_THAN expression
+    (38) expression -> . expression LESS_EQUAL_THAN expression
+    (39) expression -> . expression EQUAL expression
+    (40) expression -> . O_PAR expression C_PAR
+    (41) expression -> . IF expression THEN expression ELSE expression FI
+    (42) expression -> . WHILE expression LOOP expression POOL
+    (43) expression -> . CASE expression OF actions_list ESAC
+    (47) expression -> . NEW TYPE_ID
+    (48) expression -> . ISVOID expression
+    (49) expression -> . DESTRUCTOR expression
+    (50) expression -> . NOT expression
+    (51) expression -> . let_expression
+    (52) let_expression -> . LET generate_instances IN expression
+
+    ID              shift and go to state 40
+    INT             shift and go to state 42
+    BOOL            shift and go to state 43
+    STRING          shift and go to state 44
+    SELF            shift and go to state 45
+    O_KEY           shift and go to state 46
+    O_PAR           shift and go to state 47
+    IF              shift and go to state 48
+    WHILE           shift and go to state 49
+    CASE            shift and go to state 50
+    NEW             shift and go to state 51
+    ISVOID          shift and go to state 52
+    DESTRUCTOR      shift and go to state 53
+    NOT             shift and go to state 54
+    LET             shift and go to state 56
+
+    expression                     shift and go to state 146
+    let_expression                 shift and go to state 55
+
+state 144
+
+    (31) expression -> expression AT TYPE_ID POINT ID O_PAR arguments_list_opt C_PAR .
+
+    POINT           reduce using rule 31 (expression -> expression AT TYPE_ID POINT ID O_PAR arguments_list_opt C_PAR .)
+    AT              reduce using rule 31 (expression -> expression AT TYPE_ID POINT ID O_PAR arguments_list_opt C_PAR .)
+    PLUS            reduce using rule 31 (expression -> expression AT TYPE_ID POINT ID O_PAR arguments_list_opt C_PAR .)
+    MINUS           reduce using rule 31 (expression -> expression AT TYPE_ID POINT ID O_PAR arguments_list_opt C_PAR .)
+    STAR            reduce using rule 31 (expression -> expression AT TYPE_ID POINT ID O_PAR arguments_list_opt C_PAR .)
+    DIV             reduce using rule 31 (expression -> expression AT TYPE_ID POINT ID O_PAR arguments_list_opt C_PAR .)
+    LESS_THAN       reduce using rule 31 (expression -> expression AT TYPE_ID POINT ID O_PAR arguments_list_opt C_PAR .)
+    LESS_EQUAL_THAN reduce using rule 31 (expression -> expression AT TYPE_ID POINT ID O_PAR arguments_list_opt C_PAR .)
+    EQUAL           reduce using rule 31 (expression -> expression AT TYPE_ID POINT ID O_PAR arguments_list_opt C_PAR .)
+    POINT_AND_COMMA reduce using rule 31 (expression -> expression AT TYPE_ID POINT ID O_PAR arguments_list_opt C_PAR .)
+    C_PAR           reduce using rule 31 (expression -> expression AT TYPE_ID POINT ID O_PAR arguments_list_opt C_PAR .)
+    THEN            reduce using rule 31 (expression -> expression AT TYPE_ID POINT ID O_PAR arguments_list_opt C_PAR .)
+    LOOP            reduce using rule 31 (expression -> expression AT TYPE_ID POINT ID O_PAR arguments_list_opt C_PAR .)
+    OF              reduce using rule 31 (expression -> expression AT TYPE_ID POINT ID O_PAR arguments_list_opt C_PAR .)
+    C_KEY           reduce using rule 31 (expression -> expression AT TYPE_ID POINT ID O_PAR arguments_list_opt C_PAR .)
+    COMMA           reduce using rule 31 (expression -> expression AT TYPE_ID POINT ID O_PAR arguments_list_opt C_PAR .)
+    ELSE            reduce using rule 31 (expression -> expression AT TYPE_ID POINT ID O_PAR arguments_list_opt C_PAR .)
+    POOL            reduce using rule 31 (expression -> expression AT TYPE_ID POINT ID O_PAR arguments_list_opt C_PAR .)
+    FI              reduce using rule 31 (expression -> expression AT TYPE_ID POINT ID O_PAR arguments_list_opt C_PAR .)
+    IN              reduce using rule 31 (expression -> expression AT TYPE_ID POINT ID O_PAR arguments_list_opt C_PAR .)
+
+
+state 145
+
+    (46) action -> ID TWO_POINTS TYPE_ID IMPLICATION expression . POINT_AND_COMMA
+    (26) expression -> expression . POINT ID O_PAR arguments_list_opt C_PAR
+    (31) expression -> expression . AT TYPE_ID POINT ID O_PAR arguments_list_opt C_PAR
+    (33) expression -> expression . PLUS expression
+    (34) expression -> expression . MINUS expression
+    (35) expression -> expression . STAR expression
+    (36) expression -> expression . DIV expression
+    (37) expression -> expression . LESS_THAN expression
+    (38) expression -> expression . LESS_EQUAL_THAN expression
+    (39) expression -> expression . EQUAL expression
+
+    POINT_AND_COMMA shift and go to state 147
+    POINT           shift and go to state 61
+    AT              shift and go to state 62
+    PLUS            shift and go to state 63
+    MINUS           shift and go to state 64
+    STAR            shift and go to state 65
+    DIV             shift and go to state 66
+    LESS_THAN       shift and go to state 67
+    LESS_EQUAL_THAN shift and go to state 68
+    EQUAL           shift and go to state 69
+
+
+state 146
+
+    (56) generate_instances -> generate_instances COMMA ID TWO_POINTS TYPE_ID ASSIGNAMENT expression .
+    (26) expression -> expression . POINT ID O_PAR arguments_list_opt C_PAR
+    (31) expression -> expression . AT TYPE_ID POINT ID O_PAR arguments_list_opt C_PAR
+    (33) expression -> expression . PLUS expression
+    (34) expression -> expression . MINUS expression
+    (35) expression -> expression . STAR expression
+    (36) expression -> expression . DIV expression
+    (37) expression -> expression . LESS_THAN expression
+    (38) expression -> expression . LESS_EQUAL_THAN expression
+    (39) expression -> expression . EQUAL expression
+
+    IN              reduce using rule 56 (generate_instances -> generate_instances COMMA ID TWO_POINTS TYPE_ID ASSIGNAMENT expression .)
+    COMMA           reduce using rule 56 (generate_instances -> generate_instances COMMA ID TWO_POINTS TYPE_ID ASSIGNAMENT expression .)
+    POINT           shift and go to state 61
+    AT              shift and go to state 62
+    PLUS            shift and go to state 63
+    MINUS           shift and go to state 64
+    STAR            shift and go to state 65
+    DIV             shift and go to state 66
+    LESS_THAN       shift and go to state 67
+    LESS_EQUAL_THAN shift and go to state 68
+    EQUAL           shift and go to state 69
+
+
+state 147
+
+    (46) action -> ID TWO_POINTS TYPE_ID IMPLICATION expression POINT_AND_COMMA .
+
+    ESAC            reduce using rule 46 (action -> ID TWO_POINTS TYPE_ID IMPLICATION expression POINT_AND_COMMA .)
+    ID              reduce using rule 46 (action -> ID TWO_POINTS TYPE_ID IMPLICATION expression POINT_AND_COMMA .)
+
+WARNING: 
+WARNING: Conflicts:
+WARNING: 
+WARNING: shift/reduce conflict for POINT in state 120 resolved as shift
+WARNING: shift/reduce conflict for AT in state 120 resolved as shift
+WARNING: shift/reduce conflict for PLUS in state 120 resolved as shift
+WARNING: shift/reduce conflict for MINUS in state 120 resolved as shift
+WARNING: shift/reduce conflict for STAR in state 120 resolved as shift
+WARNING: shift/reduce conflict for DIV in state 120 resolved as shift
+WARNING: shift/reduce conflict for LESS_THAN in state 120 resolved as shift
+WARNING: shift/reduce conflict for LESS_EQUAL_THAN in state 120 resolved as shift
+WARNING: shift/reduce conflict for EQUAL in state 120 resolved as shift

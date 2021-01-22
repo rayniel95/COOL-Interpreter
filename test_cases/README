@@ -1,0 +1,16 @@
+
+Short examples for restricted Cool compiler:
+
+dispatch1.cool		: a simple program demostrating dispatching
+dispatch2.cool		: a more complicated example with more calls,
+			  prints, redefinition of the same name 
+			  (also method==attribute) in different scopes 
+			  and the string storage optimization.
+hello_world.cool	: typical "Hello World" program
+infinite_loop.cool	: an infinite loop program
+type_check.cool		: source to demonstrate the partial type 
+			  checking implemented (no errors present)
+type_check_error.cool	: source to demonstrate the partial type 
+			  checking implemented (many errors present)
+string_save.cool	: example of string printing with memory saving 
+		 	  for duplicate strings
