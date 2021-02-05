@@ -1,7 +1,7 @@
 # COOL-Interpreter
-COOL interpreter with type inference functionality.
+[COOL](https://en.wikipedia.org/wiki/Cool_(programming_language)) interpreter with type inference functionality.
 
-# How it work:
+# How to execute:
 Run main.py with some path to a test case. Test case with 'test_case_name-copia'.cl name will have AUTO_TYPE, 
 the test case without '-copia' are the original test case.
 
